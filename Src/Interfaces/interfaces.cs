@@ -1,8 +1,8 @@
 using Godot;
 using System;
 
-Public interface CardInfo{ 
-	Unit CardOwner {
+Public interface ICardInfo{ 
+	Units CardOwner {
 		get;set;
 	}
 	
@@ -11,7 +11,7 @@ Public interface CardInfo{
 		get;set;
 	}
 	
-	Unit Targets {
+	Units Targets {
 		get;set;
 	}
 	
@@ -32,6 +32,37 @@ Public interface CardInfo{
 	}
 	
 	bool CardUsed {
+		get;set;
+	}
+}
+
+
+Public interface IUnitInfo {
+	int Health {
+		get;set;
+	}
+
+	int Sanity {
+		get;set;
+	}
+	
+	int Rumia {
+		get;set;
+	}
+	
+	int Strength {
+		get;set;
+	}
+	
+	int Intelligence {
+		get;set;
+	}
+	
+	int Defence {
+		get;set;
+	}
+	
+	int Speed {
 		get;set;
 	}
 }
