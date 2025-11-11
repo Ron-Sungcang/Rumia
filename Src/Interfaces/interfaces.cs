@@ -38,6 +38,10 @@ Public interface ICardInfo{
 
 
 Public interface IUnitInfo {
+	String Name {
+		get;set;
+	}
+	
 	int Health {
 		get;set;
 	}

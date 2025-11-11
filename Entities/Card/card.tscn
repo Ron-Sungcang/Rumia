@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygaiu7k1hofe"]
+
+[ext_resource type="Theme" uid="uid://c2gm2tvw4mttc" path="res://Entities/Card/card_theme.tres" id="1_dlk08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhfuh"]
+size = Vector2(199.5, 301)
+
+[node name="Card_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+offset_bottom = -348.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dlk08")
+
+[node name="Color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.050980393, 0.58431375, 1)
+
+[node name="State" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "state"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Selector" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selector"]
+position = Vector2(100, 150.5)
+shape = SubResource("RectangleShape2D_yhfuh")
