@@ -1,12 +1,17 @@
 using Godot;
 using System;
 
+/*
+* Script in charge of the Combat scene
+*/
 public partial class CombatManager : Node
 {
+	// For now a sample button, in the future we can simply include the combat UI to this manager
 	[Export] private Button endTurnButton;
 	private CombatState state;
 	private CombatState nextState;
 	
+	// For now transitioning between phases using a timer; Future implementation, transition after actions completed
 	private float transitionTimer = 0f;
 	private float transitionDelay = 1.5f;
 	private bool isWaiting = false;
@@ -25,13 +30,14 @@ public partial class CombatManager : Node
 	public override void _Ready()
 	{
 		endTurnButton.Pressed += EndTurnPressed;
-		// TODO: Instantiate units involved in combat
+		// TODO: Instantiate units involved in combat (Use GameManager to access party)
 		StartCombat();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// TODO: Once multiple scenes established, add a root if that checks if GameManager.Instance.GetGameState() == GameState.Combat
 		if (isWaiting)
 		{
 			transitionTimer += (float)delta;

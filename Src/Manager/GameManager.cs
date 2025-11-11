@@ -36,11 +36,22 @@ public partial class GameManager : Node
 	{
 	}
 	
+	/*
+	* Sets the current state of the game
+	* P.S in the future, this script shouldn't be calling this function
+	*
+	* Usage (Anywhere): GameManager.Instance.SetGameState(GameState)
+	*/
 	public void SetGameState(GameState newState)
 	{
 		currentGameState = newState;
 	}
 	
+	/*
+	* Gets the current state of the game
+	*
+	* Usage (Anywhere): GameManager.Instance.GetGameState()
+	*/
 	public GameState GetGameState()
 	{
 		return currentGameState;
