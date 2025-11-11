@@ -80,6 +80,9 @@ public partial class CombatManager : Node
 	*/
 	public void StartCombat()
 	{
+		GameManager.Instance.SetGameState(GameState.Combat);
+		GD.Print("Current game state: " + GameManager.Instance.GetGameState());
+		
 		GD.Print("Starting Combat");
 		endTurnButton.Disabled = true;
 		endTurnButton.Visible = false;
