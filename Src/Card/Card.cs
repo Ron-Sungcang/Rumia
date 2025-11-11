@@ -61,7 +61,24 @@ public partial class Card : Control, ICardInfo
 		get => cardUsed;
 		set => cardUsed = value;
 	}
+
+
+	public void SetScale(float scaleVal)
+	{
+		this.Scale = new Vector2(scaleVal,scaleVal);
+
+	}	
+
+	public void ShowTargets()
+	{
+		GD.Print("Show targetable enemies here");	
+	}
 	
+	public void UseCards()
+	{
+		GD.Print("Dealt damage");
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -71,8 +88,5 @@ public partial class Card : Control, ICardInfo
 			StateLabel = GetNode<Label>("State");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	
 }

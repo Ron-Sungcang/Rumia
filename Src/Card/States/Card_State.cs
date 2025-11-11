@@ -4,28 +4,36 @@ using System;
 [GlobalClass]
 public partial class Card_State : Node
 {
-	protected State _currentstate = State.Idle;
-	
-	protected Card cardUI;
-	
 	public enum State {
 		Idle,
+		Hovering,
 		Clicked,
-		Targeting,
 		Used
 	}
-
-	public State CurrentState => _currentstate;
+	public State currentstate {get; set;} = State.Idle;
 	
-	public void transition_requested(State state){
-		
+	public Card cardUI {get; set;}
+	
+	
+	public void Enter(State newState)
+	{
+		currentstate = newState;
+		switch(newState)
+		{
+			case State.Idle:
+				cardUI.SetScale(1f);
+				break;
+			case State.Hovering:
+				cardUI.SetScale(1.2f);
+				break;
+			case State.Clicked:
+				cardUI.SetScale(1.5f);
+				//Show Enemies/Allies that can be targeted here
+				break;
+			case State.Used:
+				cardUI.UseCards();
+				cardUI.SetScale(1f);
+				break;
+		}
 	}
-	
-	public void enter(){}
-	
-	public void exit(){}
-	
-	public void On_Input(InputEvent @event){}
-	
-	public void On_GuiInput(InputEvent @event){}
 }

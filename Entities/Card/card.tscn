@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cygaiu7k1hofe"]
+[gd_scene load_steps=5 format=3 uid="uid://cygaiu7k1hofe"]
 
 [ext_resource type="Theme" uid="uid://c2gm2tvw4mttc" path="res://Entities/Card/card_theme.tres" id="1_dlk08"]
 [ext_resource type="Script" uid="uid://dgf62uku1b6p7" path="res://Src/Card/Card.cs" id="2_yhfuh"]
+[ext_resource type="Script" uid="uid://cy17he1hdbnjn" path="res://Src/Card/States/Card_State_Machine.cs" id="3_rrc88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhfuh"]
 size = Vector2(199.5, 301)
@@ -46,3 +47,4 @@ position = Vector2(100, 150.5)
 shape = SubResource("RectangleShape2D_yhfuh")
 
 [node name="CardStateMachine" type="Node" parent="."]
+script = ExtResource("3_rrc88")
