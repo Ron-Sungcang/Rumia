@@ -1,60 +1,74 @@
 using Godot;
 using System;
 
-public partial class Card : Node, ICardInfo
+public partial class Card : Control, ICardInfo
 {
-	[Export] private Units CardOwner;
-	[Export] private int Damage;
-	[Export] private Units Target;
-	[Export] private String CardName;
-	[Export] private String CardEffect;
-	[Export] private bool CardSelected;
-	[Export] private bool CardPlayed;
-	[Export] private bool CardUsed;
+	[Export] private Units cardOwner;
+	[Export] private int damage;
+	[Export] private Units target;
+	[Export] private string cardName;
+	[Export] private string cardEffect;
+	[Export] private bool cardSelected;
+	[Export] private bool cardPlayed;
+	[Export] private bool cardUsed;
+	[Export] public ColorRect ColorRectNode { get; set; }
+	[Export] public Label StateLabel { get; set; }
 	
-	public Units CardOwner {
-		get => CardOwner;
-		set => CardOwner = value;
+	public Units CardOwner 
+	{
+		get => cardOwner;
+		set => cardOwner = value;
 	}
 	
-	public int Damage {
-		get => Damage;
-		set => Damage = value;
+	public int Damage 
+	{
+		get => damage;
+		set => damage = value;
 	}
 	
-	public Units Target {
-		get => Target;
-		set => Target = value;
+	public Units Targets 
+	{
+		get => target;
+		set => target = value;
 	}
 	
-	public String CardName {
-		get => CardName;
-		set => CardName = value;
+	public string CardName 
+	{
+		get => cardName;
+		set => cardName = value;
 	}
 	
-	public String CardEffect {
-		get => CardEffect;
-		set => CardEffect = value;
+	public string CardEffect 
+	{
+		get => cardEffect;
+		set => cardEffect = value;
 	}
 	
-	public bool CardSelected {
-		get => CardSelected;
-		set => CardSelected = value;
+	public bool CardSelected 
+	{
+		get => cardSelected;
+		set => cardSelected = value;
 	}
 	
-	public bool CardPlayed {
-		get => CardPlayed;
-		set => CardPlayed = value;
+	public bool CardPlayed 
+	{
+		get => cardPlayed;
+		set => cardPlayed = value;
 	}
 	
-	public bool CardUsed {
-		get => CardUsed;
-		set => CardUsed = value;
+	public bool CardUsed 
+	{
+		get => cardUsed;
+		set => cardUsed = value;
 	}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (ColorRectNode == null)
+			ColorRectNode = GetNode<ColorRect>("Color");
+		if (StateLabel == null)
+			StateLabel = GetNode<Label>("State");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

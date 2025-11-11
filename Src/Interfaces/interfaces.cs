@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-Public interface ICardInfo{ 
+public interface ICardInfo{ 
 	Units CardOwner {
 		get;set;
 	}
@@ -15,11 +15,11 @@ Public interface ICardInfo{
 		get;set;
 	}
 	
-	String CardName {
+	string CardName {
 		get;set;
 	}
 	
-	String CardEffect {
+	string CardEffect {
 		get;set;
 	}
 	
@@ -37,8 +37,8 @@ Public interface ICardInfo{
 }
 
 
-Public interface IUnitInfo {
-	String Name {
+public interface IUnitInfo {
+	string Name {
 		get;set;
 	}
 	
