@@ -13,6 +13,8 @@ public partial class Card : Control, ICardInfo
 	[Export] private bool cardUsed;
 	[Export] public ColorRect ColorRectNode { get; set; }
 	[Export] public Label StateLabel { get; set; }
+
+	public Card_State_Machine stateMachine{ get;set;}
 	
 	public Units CardOwner 
 	{
@@ -88,5 +90,10 @@ public partial class Card : Control, ICardInfo
 			StateLabel = GetNode<Label>("State");
 	}
 
-	
+	public override void _GuiInput(InputEvent @event){
+		if(@event is InputEventMouseButton mouseButtonEvent){
+			GD.Print("Clicked Card");
+		}
+	}
+
 }
