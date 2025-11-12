@@ -66,6 +66,8 @@ public partial class Card : Control, ICardInfo
 	
 	[Signal]
 	public delegate void CardClickedEventHandler(Card card);
+	[Signal]
+	public delegate void CardHoveredEventHandler(Card card);
 
 	public void SetScale(float scaleVal)
 	{
@@ -104,6 +106,12 @@ public partial class Card : Control, ICardInfo
 				EmitSignal(SignalName.CardClicked, this);
 			}
 		}
+		else if(@event is InputEventMouseMotion)
+		{
+			GD.Print("Card Hovered");
+			EmitSignal(SignalName.CardHovered,this);
+		}
 	}
+
 
 }

@@ -20,6 +20,7 @@ public partial class Card_State_Machine : Node
 		}
 		//connect to signals
 		cardUI.Connect(Card.SignalName.CardClicked, Callable.From<Card>(OnCardClicked));
+		cardUI.Connect(Card.SignalName.CardHovered, Callable.From<Card>(OnCardHovered));
 		
 		if (initial_state != null)
 		{
@@ -32,6 +33,12 @@ public partial class Card_State_Machine : Node
 	{
 		GD.Print("OnCard clicked called");
 		ChangeState(Card_State.State.Clicked);
+	}
+	
+	private void OnCardHovered(Card card)
+	{
+		GD.Print("OnCard hovered called");
+		ChangeState(Card_State.State.Hovering);
 	}
 
 	public void ChangeState(Card_State.State state){

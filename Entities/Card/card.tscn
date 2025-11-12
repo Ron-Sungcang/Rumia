@@ -61,3 +61,7 @@ currentstate = 2
 
 [node name="Idle" type="Node" parent="CardStateMachine"]
 script = ExtResource("4_b2a2i")
+
+[node name="Hovering" type="Node" parent="CardStateMachine"]
+script = ExtResource("4_b2a2i")
+currentstate = 1
