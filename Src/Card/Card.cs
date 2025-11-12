@@ -70,6 +70,8 @@ public partial class Card : Control, ICardInfo
 	public delegate void CardHoveredEventHandler(Card card);
 	[Signal]
 	public delegate void CardExitEventHandler(Card card);
+	[Signal]
+	public delegate void CardClickedOutsideEventHandler(Card card);
 
 	public void SetScale(float scaleVal)
 	{
@@ -124,6 +126,5 @@ public partial class Card : Control, ICardInfo
 		GD.Print("Card Exited");
 		EmitSignal(SignalName.CardExit,this);
 	}
-
-
+	
 }

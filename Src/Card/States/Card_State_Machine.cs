@@ -22,6 +22,7 @@ public partial class Card_State_Machine : Node
 		cardUI.Connect(Card.SignalName.CardClicked, Callable.From<Card>(OnCardClicked));
 		cardUI.Connect(Card.SignalName.CardHovered, Callable.From<Card>(OnCardHovered));
 		cardUI.Connect(Card.SignalName.CardExit, Callable.From<Card>(OnCardExited));
+		cardUI.Connect(Card.SignalName.CardClickedOutside, Callable.From<Card>(OnCardIdle));
 		
 		if (initial_state != null)
 		{
@@ -45,6 +46,11 @@ public partial class Card_State_Machine : Node
 	private void OnCardExited(Card card)
 	{
 		ChangeState(Card_State.State.Exited);
+	}
+	
+	private void OnCardIdle(Card card)
+	{
+		ChangeState(Card_State.State.Idle);
 	}
 
 	public void ChangeState(Card_State.State state){
