@@ -8,7 +8,8 @@ public partial class Card_State : Node
 		Idle,
 		Hovering,
 		Clicked,
-		Used
+		Used,
+		Exited
 	}
 
 	[Export]
@@ -32,6 +33,9 @@ public partial class Card_State : Node
 			case State.Clicked:
 				cardUI.SetScale(1.5f);
 				//Show Enemies/Allies that can be targeted here
+				break;
+			case State.Exited:
+				cardUI.SetScale(1f);
 				break;
 			case State.Used:
 				cardUI.UseCards();

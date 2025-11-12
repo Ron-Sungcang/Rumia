@@ -21,6 +21,7 @@ public partial class Card_State_Machine : Node
 		//connect to signals
 		cardUI.Connect(Card.SignalName.CardClicked, Callable.From<Card>(OnCardClicked));
 		cardUI.Connect(Card.SignalName.CardHovered, Callable.From<Card>(OnCardHovered));
+		cardUI.Connect(Card.SignalName.CardExit, Callable.From<Card>(OnCardExited));
 		
 		if (initial_state != null)
 		{
@@ -40,6 +41,11 @@ public partial class Card_State_Machine : Node
 		GD.Print("OnCard hovered called");
 		ChangeState(Card_State.State.Hovering);
 	}
+	
+	private void OnCardExited(Card card)
+	{
+		ChangeState(Card_State.State.Exited);
+	}
 
 	public void ChangeState(Card_State.State state){
 		foreach (var kvp in states)
@@ -47,7 +53,8 @@ public partial class Card_State_Machine : Node
 			GD.Print($"Key: {kvp.Key}, Value: {kvp.Value}");
 		}
 		
-		if(current_state != null && current_state.currentstate == Card_State.State.Clicked && state == Card_State.State.Hovering){
+		if(current_state != null && current_state.currentstate == Card_State.State.Clicked &&
+		 (state == Card_State.State.Hovering || state == Card_State.State.Exited)){
 			GD.Print("Skipping hovered because current state is clicked");
 			return;
 		}

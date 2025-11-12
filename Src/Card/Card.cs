@@ -68,6 +68,8 @@ public partial class Card : Control, ICardInfo
 	public delegate void CardClickedEventHandler(Card card);
 	[Signal]
 	public delegate void CardHoveredEventHandler(Card card);
+	[Signal]
+	public delegate void CardExitEventHandler(Card card);
 
 	public void SetScale(float scaleVal)
 	{
@@ -94,6 +96,9 @@ public partial class Card : Control, ICardInfo
 			StateLabel = GetNode<Label>("State");
 		stateMachine = GetNode<Card_State_Machine>("CardStateMachine");
 		stateMachine.Init(this);
+		
+		this.MouseEntered += OnMouseEntered;
+		this.MouseExited += OnMouseExited;
 	}
 
 	public override void _GuiInput(InputEvent @event)
@@ -106,11 +111,18 @@ public partial class Card : Control, ICardInfo
 				EmitSignal(SignalName.CardClicked, this);
 			}
 		}
-		else if(@event is InputEventMouseMotion)
-		{
-			GD.Print("Card Hovered");
-			EmitSignal(SignalName.CardHovered,this);
-		}
+	}
+	
+	private void OnMouseEntered()
+	{
+		GD.Print("Card Hovered");
+		EmitSignal(SignalName.CardHovered,this);
+	}
+	
+	private void OnMouseExited()
+	{
+		GD.Print("Card Exited");
+		EmitSignal(SignalName.CardExit,this);
 	}
 
 
