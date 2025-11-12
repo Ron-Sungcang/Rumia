@@ -8,21 +8,39 @@ public partial class Card_State_Machine : Node
 	private Card_State current_state;
 	private Dictionary<Card_State.State, Card_State> states = new(); 
 	
-	public void Init(Card cardUI){		
-		foreach (Node child in GetChildren()){
+	public void Init(Card cardUI)
+	{		
+		foreach (Node child in GetChildren())
+		{
 			if(child is Card_State){
 				var state = (Card_State) child;
 				states[state.currentstate] = state;
 				state.cardUI = cardUI;
 			}
-		} if (initial_state != null){
+		}
+		//connect to signals
+		cardUI.Connect(Card.SignalName.CardClicked, Callable.From<Card>(OnCardClicked));
+		
+		if (initial_state != null)
+		{
 			initial_state.Enter(initial_state.currentstate);
 			current_state = initial_state;
 		}
 	}
 
-	public void OnTransitionRequested(Card_State.State state){
+	private void OnCardClicked(Card card)
+	{
+		GD.Print("OnCard clicked called");
+		ChangeState(Card_State.State.Clicked);
+	}
 
+	public void ChangeState(Card_State.State state){
+		foreach (var kvp in states)
+		{
+			GD.Print($"Key: {kvp.Key}, Value: {kvp.Value}");
+		}
+		current_state = states[state];
+		current_state.Enter(state);
 	}
 	 
 	public void OnInput(InputEvent @event){

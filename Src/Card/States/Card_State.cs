@@ -10,13 +10,16 @@ public partial class Card_State : Node
 		Clicked,
 		Used
 	}
-	public State currentstate {get; set;} = State.Idle;
+
+	[Export]
+	public State currentstate {get; set;}
 	
 	public Card cardUI {get; set;}
 	
 	
 	public void Enter(State newState)
 	{
+		GD.Print("Enter Called");
 		currentstate = newState;
 		switch(newState)
 		{

@@ -63,7 +63,9 @@ public partial class Card : Control, ICardInfo
 		get => cardUsed;
 		set => cardUsed = value;
 	}
-
+	
+	[Signal]
+	public delegate void CardClickedEventHandler(Card card);
 
 	public void SetScale(float scaleVal)
 	{
@@ -88,11 +90,19 @@ public partial class Card : Control, ICardInfo
 			ColorRectNode = GetNode<ColorRect>("Color");
 		if (StateLabel == null)
 			StateLabel = GetNode<Label>("State");
+		stateMachine = GetNode<Card_State_Machine>("CardStateMachine");
+		stateMachine.Init(this);
 	}
 
-	public override void _GuiInput(InputEvent @event){
-		if(@event is InputEventMouseButton mouseButtonEvent){
-			GD.Print("Clicked Card");
+	public override void _GuiInput(InputEvent @event)
+	{
+		if(@event is InputEventMouseButton mouseButtonEvent)
+		{
+			if(mouseButtonEvent.Pressed && mouseButtonEvent.ButtonIndex == MouseButton.Left)
+			{
+				GD.Print("Pressed card");
+				EmitSignal(SignalName.CardClicked, this);
+			}
 		}
 	}
 
