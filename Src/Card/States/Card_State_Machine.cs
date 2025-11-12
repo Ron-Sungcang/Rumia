@@ -46,6 +46,12 @@ public partial class Card_State_Machine : Node
 		{
 			GD.Print($"Key: {kvp.Key}, Value: {kvp.Value}");
 		}
+		
+		if(current_state != null && current_state.currentstate == Card_State.State.Clicked && state == Card_State.State.Hovering){
+			GD.Print("Skipping hovered because current state is clicked");
+			return;
+		}
+		
 		current_state = states[state];
 		current_state.Enter(state);
 	}

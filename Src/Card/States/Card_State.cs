@@ -12,7 +12,7 @@ public partial class Card_State : Node
 	}
 
 	[Export]
-	public State currentstate {get; set;}
+	public State currentstate {get; set;} = State.Idle;
 	
 	public Card cardUI {get; set;}
 	
