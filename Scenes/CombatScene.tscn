@@ -5,14 +5,21 @@
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("endTurnButton")]
 script = ExtResource("1_dqj0d")
-endTurnButton = NodePath("SampleButton")
+endTurnButton = NodePath("CombatControl/SampleButton")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(498.00006, 309.00003)
 scale = Vector2(0.6748691, 0.6493456)
 texture = ExtResource("1_2mqg5")
 
-[node name="SampleButton" type="Button" parent="."]
+[node name="CombatControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1082.0
+offset_bottom = 599.0
+
+[node name="SampleButton" type="Button" parent="CombatControl"]
+layout_mode = 0
 offset_left = 747.0
 offset_top = 103.0
 offset_right = 825.0
