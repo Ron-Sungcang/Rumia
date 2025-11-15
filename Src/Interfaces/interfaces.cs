@@ -1,15 +1,72 @@
 using Godot;
 using System;
 
-public partial class Interfaces : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+public interface ICardInfo{ 
+	Units CardOwner {
+		get;set;
+	}
+	
+	// For a healing card just get a negative
+	int Damage {
+		get;set;
+	}
+	
+	Units Targets {
+		get;set;
+	}
+	
+	string CardName {
+		get;set;
+	}
+	
+	string CardEffect {
+		get;set;
+	}
+	
+	bool CardSelected {
+		get;set;
+	}
+	
+	bool CardPlayed {
+		get;set;
+	}
+	
+	bool CardUsed {
+		get;set;
+	}
+}
+
+
+public interface IUnitInfo {
+	string Name {
+		get;set;
+	}
+	
+	int Health {
+		get;set;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	int Sanity {
+		get;set;
+	}
+	
+	int Rumia {
+		get;set;
+	}
+	
+	int Strength {
+		get;set;
+	}
+	
+	int Intelligence {
+		get;set;
+	}
+	
+	int Defence {
+		get;set;
+	}
+	
+	int Speed {
+		get;set;
 	}
 }
