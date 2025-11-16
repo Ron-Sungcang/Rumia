@@ -16,4 +16,11 @@ public interface IUnit
 	{
 		get; set;
 	}
+	
+	bool IsAlive
+	{
+		get; set;
+	}
+	
+	void TakeDamage(int damage);
 }
