@@ -11,6 +11,7 @@ public partial class Units : Node, IUnit
 	[Export] private int maxHP;
 	[Export] private int currHP;
 	[Export] private bool isAlive;
+	[Export] private Sprite2D sprite;
 	
 	public string UnitName
 	{
@@ -55,5 +56,14 @@ public partial class Units : Node, IUnit
 			IsAlive = false;
 			//Destroy
 		}
+	}
+	
+	public Sprite2D GetSprite()
+	{
+		if(sprite != null){
+			GD.Print("Unit doesn't contain a sprite");
+			return null;
+		}
+		return sprite;
 	}
 }

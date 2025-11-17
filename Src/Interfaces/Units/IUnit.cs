@@ -22,5 +22,6 @@ public interface IUnit
 		get; set;
 	}
 	
-	void TakeDamage(int damage);
+	void TakeDamage(int damage);		//When unit takes damage
+	Sprite2D GetSprite();				//Gets the units sprite
 }
