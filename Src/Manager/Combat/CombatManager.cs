@@ -119,6 +119,9 @@ public partial class CombatManager : Node
 	{
 		Vector3 position;
 		// Seperate out player units and enemy units
+		// Party units will not need party slots since we are at a fixed number (4)
+		// Enemies will need party slots for encounters where there are more enemies than slots
+		
 		//Instantiate()
 	}
 	
