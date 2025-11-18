@@ -37,6 +37,12 @@ public partial class Units : Node, IUnit
 		set => isAlive = value;
 	}
 	
+	public Sprite2D UnitSprite
+	{
+		get => sprite;
+		set => sprite = value;
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -56,14 +62,5 @@ public partial class Units : Node, IUnit
 			IsAlive = false;
 			//Destroy
 		}
-	}
-	
-	public Sprite2D GetSprite()
-	{
-		if(sprite != null){
-			GD.Print("Unit doesn't contain a sprite");
-			return null;
-		}
-		return sprite;
 	}
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 */
 public partial class UnitManager : Node
 {
+	public static UnitManager Instance { get; private set; }
 	// For now these are just Units
 	private List<Units> partyUnits;
 	private List<Units> enemyUnits;

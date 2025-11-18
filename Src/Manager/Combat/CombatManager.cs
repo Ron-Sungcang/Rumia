@@ -7,6 +7,7 @@ using System;
 public partial class CombatManager : Node
 {
 	// For now a sample button, in the future we can simply include the combat UI to this manager
+	[Export] public Sprite2D testUnitSprite;
 	[Export] private Button endTurnButton;
 	private CombatState state;
 	private CombatState nextState;
@@ -86,13 +87,39 @@ public partial class CombatManager : Node
 	*/
 	public void StartCombat()
 	{
-		GameManager.Instance.SetGameState(GameState.Combat);
+		GameManager.Instance.SetGameState(GameState.Combat); 
+		// Setting this game state should occur when enetering combat scene not here
+		
+		// Setting sprites here for now to test
+		for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
+		{
+			UnitManager.Instance.GetPartyList()[i].UnitSprite = testUnitSprite;
+			UnitManager.Instance.GetPartyList()[i].UnitSprite.Visible = true;
+		}
+		
+		for (int j = 0; j < UnitManager.Instance.GetEnemyList().Count; j++)
+		{
+			UnitManager.Instance.GetEnemyList()[j].UnitSprite = testUnitSprite;
+			UnitManager.Instance.GetEnemyList()[j].UnitSprite.Visible = true;
+		}
+		
 		GD.Print("Current game state: " + GameManager.Instance.GetGameState());
 		
 		GD.Print("Starting Combat");
 		endTurnButton.Disabled = true;
 		endTurnButton.Visible = false;
+		
+		//Setting the nodes to its positions in the scene
+		SetUnitPositions();
+		
 		StartTransition(CombatState.StartTurn);
+	}
+	
+	public void SetUnitPositions()
+	{
+		Vector3 position;
+		// Seperate out player units and enemy units
+		//Instantiate()
 	}
 	
 	private void StartTransition(CombatState next)
