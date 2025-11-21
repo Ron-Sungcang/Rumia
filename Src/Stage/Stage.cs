@@ -3,40 +3,25 @@ using System;
 
 public partial class Stage : Node, IStage
 {
-	[Export] private int stageNumber;
-	[Export] private string stageName;
+	[Export] public int StageNumber{get; set;} = 0;
+	[Export] public string StageName{get; set;} = "";
 	[Export] private int currNumEnemies;
-	[Export] private int numEnemiesTotal;
-	[Export] private int numEnemySlots;
+	[Export] public int NumEnemiesTotal{get; set;} = 0;
+	[Export] public int NumEnemySlots{get; set;} = 0;
+	[Export] public bool StageCompleted{get; set;} = false;
+	[Export] public Stage PrevStage{get; set;} = null;
+	[Export] public Stage NextStage{get; set;} = null;
 	
-	public int StageNumber
-	{
-		get => stageNumber;
-		set => stageNumber = value;
-	}
-	
-	public string StageName
-	{
-		get => stageName;
-		set => stageName = value;
-	}
-	
+	// Declare like this if there are more features than just get and set
 	public int CurrNumberEnemies
 	{
 		get => currNumEnemies;
-		set => currNumEnemies = value;
-	}
-	
-	public int NumEnemiesTotal
-	{
-		get => numEnemiesTotal;
-		set => numEnemiesTotal = value;
-	}
-	
-	public int NumEnemySlots
-	{
-		get => numEnemySlots;
-		set => numEnemySlots = value;
+		set{
+			currNumEnemies = value;
+			if(currNumEnemies <= 0){
+				StageCompleted = true;
+			}
+		}
 	}
 	
 	// Called when the node enters the scene tree for the first time.

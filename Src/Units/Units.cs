@@ -7,40 +7,23 @@ using System;
 */
 public partial class Units : Node, IUnit
 {
-	[Export] private string unitName;
-	[Export] private int maxHP;
+	[Export] public string UnitName{get;set;} = "";
+	[Export] public int MaxHP{get;set;} = 1;
 	[Export] private int currHP;
-	[Export] private bool isAlive;
-	[Export] private Sprite2D sprite;
-	
-	public string UnitName
-	{
-		get => unitName;
-		set => unitName = value;
-	}
-	
-	public int MaxHP
-	{
-		get => maxHP;
-		set => maxHP = value;
-	}
+	[Export] public bool IsAlive{get;set;} = false;
+	[Export] public Sprite2D UnitSprite{get;set;}
 	
 	public int CurrentHP
 	{
 		get => currHP;
-		set => currHP = value;
-	}
-	
-	public bool IsAlive
-	{
-		get => isAlive;
-		set => isAlive = value;
-	}
-	
-	public Sprite2D UnitSprite
-	{
-		get => sprite;
-		set => sprite = value;
+		set{
+			currHP = value;
+			
+			if(currHP <= 0)
+			{
+				GD.Print("Super dead");
+			}
+		}
 	}
 	
 	// Called when the node enters the scene tree for the first time.

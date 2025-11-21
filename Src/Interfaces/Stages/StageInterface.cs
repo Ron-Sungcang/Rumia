@@ -27,4 +27,20 @@ public interface IStage
 	{
 		get; set;
 	}
+	
+	bool StageCompleted
+	{
+		get; set;
+	}
+	
+	// If prev stage != null and prev stage isCompleted => Becomes visible
+	Stage PrevStage
+	{
+		get; set;
+	}
+	
+	Stage NextStage
+	{
+		get; set;
+	}
 }
