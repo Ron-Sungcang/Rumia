@@ -110,19 +110,25 @@ public partial class CombatManager : Node
 		endTurnButton.Visible = false;
 		
 		//Setting the nodes to its positions in the scene
-		SetUnitPositions();
+		SetPartyPositions();
 		
 		StartTransition(CombatState.StartTurn);
 	}
 	
-	public void SetUnitPositions()
+	private void SetPartyPositions()
 	{
 		Vector3 position;
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
 		
-		//Instantiate()
+		// position = new Vector3(1, 0)
+		//Instantiate(unit, position, Quaternion.identity)
+	}
+	
+	private void SetEnemyPositions()
+	{
+		
 	}
 	
 	private void StartTransition(CombatState next)
