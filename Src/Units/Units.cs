@@ -5,7 +5,7 @@ using System;
 * This class is the base class for all units in the game
 * There should be more classes that inherits this class
 */
-public partial class Units : Node, IUnit
+public partial class Units : Node2D, IUnit
 {
 	[Export] public string UnitName{get;set;} = "";
 	[Export] public int MaxHP{get;set;} = 1;

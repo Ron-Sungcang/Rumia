@@ -1,14 +1,14 @@
 using Godot;
 using System;
 
-public partial class Stage : Node, IStage
+public partial class Stage : Node2D, IStage
 {
 	[Export] public int StageNumber{get; set;} = 0;
 	[Export] public string StageName{get; set;} = "";
 	[Export] private int currNumEnemies;
 	[Export] public int NumEnemiesTotal{get; set;} = 0;
 	[Export] public int NumEnemySlots{get; set;} = 0;
-	[Export] public bool StageCompleted{get; set;} = false;
+	[Export] private bool stageCompleted = false;
 	[Export] public Stage PrevStage{get; set;} = null;
 	[Export] public Stage NextStage{get; set;} = null;
 	
@@ -18,8 +18,24 @@ public partial class Stage : Node, IStage
 		get => currNumEnemies;
 		set{
 			currNumEnemies = value;
-			if(currNumEnemies <= 0){
-				StageCompleted = true;
+			if(currNumEnemies <= 0)
+			{
+				//Play the ending animation in a combat
+				StageCompleted = true; // Okay here since a stage visibility should only show on outworld
+			}
+		}
+	}
+	
+	public bool StageCompleted
+	{
+		get => stageCompleted;
+		set
+		{
+			stageCompleted = value;
+			
+			if(stageCompleted && NextStage != null)
+			{
+				NextStage.Visible = true;
 			}
 		}
 	}
