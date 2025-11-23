@@ -67,7 +67,7 @@ public partial class CombatManager : Node
 			case CombatState.PlayerTurn:
 				endTurnButton.Disabled = false;
 				endTurnButton.Visible = true;
-				EmitSignal(SignalName.StartDraw,this);
+				EmitSignal(SignalName.StartDraw);
 				
 				if (actionCompleted)
 				{

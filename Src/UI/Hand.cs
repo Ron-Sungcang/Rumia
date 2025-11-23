@@ -5,6 +5,7 @@ public partial class Hand : Node
 {
 	private PackedScene _cardScene = (PackedScene)GD.Load("res://Entities/Card/card.tscn");
 	private HBoxContainer _cardContainer;
+	private int cards_hand;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -13,7 +14,7 @@ public partial class Hand : Node
 		_cardContainer = GetNode<HBoxContainer>("hand");
 		var combatManager = GetNode<CombatManager>("../..");
 		
-		//combatManager.Connect(CombatManager.SignalName.StartDraw,new Callable(this, nameof(OnStartDraw)));
+		combatManager.Connect(CombatManager.SignalName.StartDraw,new Callable(this, nameof(OnStartDraw)));
 		combatManager.Connect(CombatManager.SignalName.StartCombatSignal,new Callable(this, nameof(OnStartCombat)));
 	}
 	
@@ -22,6 +23,15 @@ public partial class Hand : Node
 		for(int i = 0; i < 5; i++){
 			var card = _cardScene.Instantiate<Card>();
 			_cardContainer.AddChild(card);
+		}
+		cards_hand = 5;
+	}
+	
+	private void OnStartDraw(){
+		if(cards_hand < 6){
+			var card = _cardScene.Instantiate<Card>();
+			_cardContainer.AddChild(card);
+			cards_hand++;
 		}
 	}
 
