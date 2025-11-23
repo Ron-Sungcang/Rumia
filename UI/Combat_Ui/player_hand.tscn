@@ -1,10 +1,36 @@
-[gd_scene format=3 uid="uid://bve3mqy26wipp"]
+[gd_scene load_steps=2 format=3 uid="uid://bve3mqy26wipp"]
 
-[node name="PlayerHand" type="Control"]
-layout_mode = 3
-anchor_right = 0.749
+[ext_resource type="PackedScene" uid="uid://cygaiu7k1hofe" path="res://Entities/Card/card.tscn" id="1_4oxuf"]
+
+[node name="PlayerHand" type="CanvasLayer"]
+
+[node name="hand" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.15197754
-offset_bottom = -126.0
+offset_left = 3.0
+offset_top = -151.0
+offset_right = 3.0
+offset_bottom = -1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="Card_UI" parent="hand" instance=ExtResource("1_4oxuf")]
+layout_mode = 2
+
+[node name="Card_UI2" parent="hand" instance=ExtResource("1_4oxuf")]
+layout_mode = 2
+
+[node name="Card_UI3" parent="hand" instance=ExtResource("1_4oxuf")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -167.0
+offset_right = 1080.0
+grow_vertical = 0
+mouse_filter = 2
