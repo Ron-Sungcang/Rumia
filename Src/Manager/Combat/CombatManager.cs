@@ -8,6 +8,10 @@ public partial class CombatManager : Node
 {
 	// For now a sample button, in the future we can simply include the combat UI to this manager
 	[Export] public Sprite2D testUnitSprite;
+	
+	// This chould be selected from the overworld -> sent to Game Manager, where the combat scene should be able to pull from
+	[Export] public CombatStage testSelectedStage; //Remove later
+	
 	[Export] private Button endTurnButton;
 	private CombatState state;
 	private CombatState nextState;
@@ -55,28 +59,51 @@ public partial class CombatManager : Node
 			return;
 		}
 		
-		switch (state)
+		if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
 		{
-			case CombatState.StartTurn:
-				actionCompleted = false;
-				StartTransition(CombatState.PlayerTurn);
-				break;
-			case CombatState.PlayerTurn:
-				endTurnButton.Disabled = false;
-				endTurnButton.Visible = true;
-				
-				if (actionCompleted)
-				{
-					StartTransition(CombatState.EndTurn);
-					endTurnButton.Visible = false;
-				}
-				break;
-			case CombatState.EndTurn:
-				StartTransition(CombatState.EnemyTurn);
-				break;
-			case CombatState.EnemyTurn:
-				StartTransition(CombatState.StartTurn);
-				break;
+			switch (state)
+			{
+				case CombatState.StartTurn:
+					actionCompleted = false;
+					StartTransition(CombatState.PlayerTurn);
+					break;
+				case CombatState.PlayerTurn:
+					endTurnButton.Disabled = false;
+					endTurnButton.Visible = true;
+					
+					if (actionCompleted)
+					{
+						StartTransition(CombatState.EndTurn);
+						endTurnButton.Visible = false;
+					}
+					break;
+				case CombatState.EndTurn:
+					StartTransition(CombatState.EnemyTurn);
+					break;
+				case CombatState.EnemyTurn:
+					StartTransition(CombatState.StartTurn);
+					break;
+			}
+		}
+		else if(testSelectedStage != null && (testSelectedStage.CombatStageOver))
+		{
+			//Check if Rem.PartyUnits <= 0 or Rem.EnemyUnits <= 0 or if winning conditions met
+			//Do ending animations
+			
+			//Some stage might have combat lose for stage completion
+			switch (testSelectedStage.CombatVictory)
+			{
+				case true:
+					GD.Print("Victors!");
+					break;
+				case false:
+					GD.Print("Loser!");
+					break;
+			}
+			
+			GD.Print("Combat over!!!!!!!");
+			
+			SetProcess(false);
 		}
 	}
 	
@@ -89,6 +116,8 @@ public partial class CombatManager : Node
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
 		// Setting this game state should occur when enetering combat scene not here
+		
+		SetProcess(true);
 		
 		// Setting sprites here for now to test
 		for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
