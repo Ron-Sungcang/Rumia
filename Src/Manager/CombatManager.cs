@@ -16,6 +16,10 @@ public partial class CombatManager : Node
 	private float transitionDelay = 1.5f;
 	private bool isWaiting = false;
 	private bool actionCompleted = false;
+	[Signal]
+	public delegate void StartDrawEventHandler();
+	[Signal]
+	public delegate void StartCombatSignalEventHandler();
 	
 	private enum CombatState
 	{
@@ -63,6 +67,7 @@ public partial class CombatManager : Node
 			case CombatState.PlayerTurn:
 				endTurnButton.Disabled = false;
 				endTurnButton.Visible = true;
+				EmitSignal(SignalName.StartDraw,this);
 				
 				if (actionCompleted)
 				{
@@ -92,6 +97,7 @@ public partial class CombatManager : Node
 		GD.Print("Starting Combat");
 		endTurnButton.Disabled = true;
 		endTurnButton.Visible = false;
+		EmitSignal(SignalName.StartCombatSignal,this);
 		StartTransition(CombatState.StartTurn);
 	}
 	
