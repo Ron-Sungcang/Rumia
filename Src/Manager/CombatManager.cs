@@ -97,7 +97,7 @@ public partial class CombatManager : Node
 		GD.Print("Starting Combat");
 		endTurnButton.Disabled = true;
 		endTurnButton.Visible = false;
-		EmitSignal(SignalName.StartCombatSignal,this);
+		EmitSignal(SignalName.StartCombatSignal);
 		StartTransition(CombatState.StartTurn);
 	}
 	

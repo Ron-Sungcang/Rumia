@@ -17,8 +17,9 @@ texture = ExtResource("1_2mqg5")
 z_index = -1
 layout_mode = 3
 anchors_preset = 0
+offset_top = 1.0
 offset_right = 1082.0
-offset_bottom = 599.0
+offset_bottom = 600.0
 
 [node name="SampleButton" type="Button" parent="CombatControl"]
 layout_mode = 0
