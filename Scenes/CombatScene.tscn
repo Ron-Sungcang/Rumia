@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx74jmtfaegl6"]
+[gd_scene load_steps=7 format=3 uid="uid://bx74jmtfaegl6"]
 
 [ext_resource type="Texture2D" uid="uid://crto01nnmtftd" path="res://Assets/Images/Screenshot 2025-11-06 192018.png" id="1_2mqg5"]
 [ext_resource type="Script" uid="uid://bsvquug6vsnse" path="res://Src/Manager/Combat/CombatManager.cs" id="1_dqj0d"]
 [ext_resource type="Texture2D" uid="uid://bm6dshcruveop" path="res://icon.svg" id="2_sygbj"]
 [ext_resource type="Script" uid="uid://dx4al0gbfbhuy" path="res://Src/Stage/CombatStage.cs" id="4_eel7g"]
+[ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
+[ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("testUnitSprite", "testSelectedStage", "endTurnButton")]
 script = ExtResource("1_dqj0d")
@@ -49,4 +51,43 @@ text = "End Turn"
 
 [node name="PartyPositions" type="Node2D" parent="."]
 
+[node name="1PartySlot" type="Node2D" parent="PartyPositions"]
+script = ExtResource("5_memue")
+SlotNumber = 1
+
+[node name="2PartySlot" type="Node2D" parent="PartyPositions"]
+script = ExtResource("5_memue")
+SlotNumber = 2
+
+[node name="3PartySlot" type="Node2D" parent="PartyPositions"]
+script = ExtResource("5_memue")
+SlotNumber = 3
+
+[node name="4PartySlot" type="Node2D" parent="PartyPositions"]
+script = ExtResource("5_memue")
+SlotNumber = 4
+
 [node name="EnemyPositions" type="Node2D" parent="."]
+
+[node name="1EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
+SlotNumber = 1
+
+[node name="2EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
+SlotNumber = 2
+
+[node name="3EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
+SlotNumber = 3
+
+[node name="4EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
+SlotNumber = 4
+
+[node name="5EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
+SlotNumber = 5
+
+[node name="6EnemySlot" type="Node2D" parent="EnemyPositions"]
+script = ExtResource("6_2p17o")
