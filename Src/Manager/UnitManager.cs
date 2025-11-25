@@ -10,14 +10,17 @@ public partial class UnitManager : Node
 {
 	public static UnitManager Instance { get; private set; }
 	// For now these are just Units
-	private List<Units> partyUnits;
-	private List<Units> enemyUnits;
+	private List<PartyUnit> partyUnits;
+	private List<EnemyUnit> enemyUnits;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Units character = new Units();
-		Units enemy = new Units();
+		Instance = this;
+		
+		GD.Print("Starting UnitManager");
+		PartyUnit character = new PartyUnit();
+		EnemyUnit enemy = new EnemyUnit();
 		
 		character.UnitName = "Sample Player";
 		character.MaxHP = 10;
@@ -29,8 +32,8 @@ public partial class UnitManager : Node
 		enemy.CurrentHP = enemy.MaxHP;
 		enemy.IsAlive = true;
 		
-		partyUnits = new List<Units>();
-		enemyUnits = new List<Units>();
+		partyUnits = new List<PartyUnit>();
+		enemyUnits = new List<EnemyUnit>();
 		
 		AddToPartyTeam(0, character);
 		AddToEnemyTeam(0, enemy);
@@ -41,7 +44,7 @@ public partial class UnitManager : Node
 	{
 	}
 	
-	public void AddToPartyTeam(int pos, Units unit)
+	public void AddToPartyTeam(int pos, PartyUnit unit)
 	{
 		if(partyUnits == null)
 		{
@@ -57,7 +60,7 @@ public partial class UnitManager : Node
 		partyUnits.Insert(pos, unit);
 	}
 	
-	public void AddToEnemyTeam(int pos, Units unit)
+	public void AddToEnemyTeam(int pos, EnemyUnit unit)
 	{
 		// For encounters that might have more than 4 enemies
 		// Maybe in a Stage, have a total num of enemies
@@ -67,7 +70,9 @@ public partial class UnitManager : Node
 			GD.Print("Enemy list is not initialized");
 			return;
 		}
-		else if(enemyUnits.Count >= 4){
+		else if(enemyUnits.Count >= 4)
+		{
+			//Instead of a static 4, turn this to take the stage count
 			GD.Print("Enemy count exceeds list size");
 			return;
 		}
@@ -75,12 +80,12 @@ public partial class UnitManager : Node
 		enemyUnits.Insert(pos, unit);
 	}
 	
-	public List<Units> GetPartyList()
+	public List<PartyUnit> GetPartyList()
 	{
 		return partyUnits;
 	}
 	
-	public List<Units> GetEnemyList()
+	public List<EnemyUnit> GetEnemyList()
 	{
 		return enemyUnits;
 	}

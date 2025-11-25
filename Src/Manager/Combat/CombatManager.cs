@@ -36,6 +36,7 @@ public partial class CombatManager : Node
 	{
 		endTurnButton.Pressed += EndTurnPressed;
 		// TODO: Instantiate units involved in combat (Use GameManager to access party)
+		SetProcess(false);
 		StartCombat();
 	}
 
@@ -73,6 +74,10 @@ public partial class CombatManager : Node
 					
 					if (actionCompleted)
 					{
+						if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
+						{
+							GD.Print("Remaining enemies: ", testSelectedStage.RemainingEnemies);
+						}
 						StartTransition(CombatState.EndTurn);
 						endTurnButton.Visible = false;
 					}
@@ -81,6 +86,10 @@ public partial class CombatManager : Node
 					StartTransition(CombatState.EnemyTurn);
 					break;
 				case CombatState.EnemyTurn:
+					if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
+					{
+						GD.Print("Remaining units: ", testSelectedStage.RemainingUnits);
+					}
 					StartTransition(CombatState.StartTurn);
 					break;
 			}
@@ -104,6 +113,7 @@ public partial class CombatManager : Node
 			GD.Print("Combat over!!!!!!!");
 			
 			SetProcess(false);
+			//Return to overworld
 		}
 	}
 	
@@ -115,21 +125,41 @@ public partial class CombatManager : Node
 	public void StartCombat()
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
+		SetProcess(true);
 		// Setting this game state should occur when enetering combat scene not here
 		
-		SetProcess(true);
-		
-		// Setting sprites here for now to test
-		for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
+		//Gotta do a check if a stage is selected for combat scene
+		if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
 		{
-			UnitManager.Instance.GetPartyList()[i].UnitSprite = testUnitSprite;
-			UnitManager.Instance.GetPartyList()[i].UnitSprite.Visible = true;
+			GD.Print("Number of enemies: ", testSelectedStage.NumEnemiesTotal);
 		}
 		
-		for (int j = 0; j < UnitManager.Instance.GetEnemyList().Count; j++)
+		// Setting sprites here for now to test
+		if(UnitManager.Instance.GetPartyList() != null)
 		{
-			UnitManager.Instance.GetEnemyList()[j].UnitSprite = testUnitSprite;
-			UnitManager.Instance.GetEnemyList()[j].UnitSprite.Visible = true;
+			GD.Print("Number of party members: ", UnitManager.Instance.GetPartyList().Count);
+			for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
+			{
+				UnitManager.Instance.GetPartyList()[i].UnitSprite = testUnitSprite;
+				UnitManager.Instance.GetPartyList()[i].UnitSprite.Visible = true;
+			}
+		}
+		else
+		{
+			GD.Print("Party list null");
+		}
+		
+		if(UnitManager.Instance.GetEnemyList() != null)
+		{
+			for (int j = 0; j < UnitManager.Instance.GetEnemyList().Count; j++)
+			{
+				UnitManager.Instance.GetEnemyList()[j].UnitSprite = testUnitSprite;
+				UnitManager.Instance.GetEnemyList()[j].UnitSprite.Visible = true;
+			}
+		}
+		else
+		{
+			GD.Print("Enemy list null");
 		}
 		
 		GD.Print("Current game state: " + GameManager.Instance.GetGameState());
@@ -146,13 +176,18 @@ public partial class CombatManager : Node
 	
 	private void SetPartyPositions()
 	{
-		Vector3 position;
+		Vector2 position;
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
 		
-		// position = new Vector3(1, 0)
+		// position = new Vector3(409, 295)
 		//Instantiate(unit, position, Quaternion.identity)
+	}
+	
+	private void SpawnCharacters(PartyUnit unit, Vector2 pos)
+	{
+		
 	}
 	
 	private void SetEnemyPositions()

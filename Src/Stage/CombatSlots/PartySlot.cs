@@ -1,16 +1,8 @@
 using Godot;
 using System;
 
-public partial class EnemyUnit : Units, IEnemyUnit
+public partial class PartySlot : Node
 {
-	[Export] private bool unitPlayed = false;
-	
-	public bool UnitPlayed
-	{
-		get => unitPlayed;
-		set => unitPlayed = value;
-	}
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

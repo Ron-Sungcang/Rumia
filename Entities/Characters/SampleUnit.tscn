@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ho6pa146qo6c"]
 
-[ext_resource type="Script" uid="uid://bnujpyyiw7ngi" path="res://Src/Units/Units.cs" id="1_3l7it"]
+[ext_resource type="Script" uid="uid://cglk6foaogodp" path="res://Src/Units/PartyUnits/PartyUnit.cs" id="1_3l7it"]
 [ext_resource type="Texture2D" uid="uid://bm6dshcruveop" path="res://icon.svg" id="1_glq2a"]
 
-[node name="SampleUnit" type="Node2D" node_paths=PackedStringArray("sprite")]
+[node name="SampleUnit" type="Node2D" node_paths=PackedStringArray("UnitSprite")]
 script = ExtResource("1_3l7it")
-sprite = NodePath("Sprite2D")
+MaxHP = 6
+currHP = 6
+UnitSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_glq2a")

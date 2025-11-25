@@ -22,6 +22,11 @@ public interface IUnit
 		get; set;
 	}
 	
+	int PositionSlot
+	{
+		get; set;
+	}
+	
 	Sprite2D UnitSprite
 	{
 		get; set;
@@ -38,12 +43,7 @@ public interface IPartyUnit
 }
 
 public interface IEnemyUnit
-{
-	int PositionSlot
-	{
-		get; set;
-	}
-	
+{	
 	bool UnitPlayed
 	{
 		get; set;
