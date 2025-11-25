@@ -91,3 +91,4 @@ SlotNumber = 5
 
 [node name="6EnemySlot" type="Node2D" parent="EnemyPositions"]
 script = ExtResource("6_2p17o")
+SlotNumber = 6

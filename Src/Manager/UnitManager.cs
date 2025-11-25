@@ -46,6 +46,8 @@ public partial class UnitManager : Node
 	
 	public void AddToPartyTeam(int pos, PartyUnit unit)
 	{
+		var test1 = unit; var test2 = unit; var test3 = unit;
+		
 		if(partyUnits == null)
 		{
 			GD.Print("Party list is not initialized");
@@ -58,12 +60,18 @@ public partial class UnitManager : Node
 		}
 		
 		partyUnits.Insert(pos, unit);
+		
+		//Test units in party DELETE later
+		partyUnits.Insert(1, test1);
+		partyUnits.Insert(2, test2);
+		partyUnits.Insert(3, test3);
 	}
 	
 	public void AddToEnemyTeam(int pos, EnemyUnit unit)
 	{
 		// For encounters that might have more than 4 enemies
 		// Maybe in a Stage, have a total num of enemies
+		var test1 = unit;
 		
 		if(enemyUnits == null)
 		{
@@ -78,6 +86,9 @@ public partial class UnitManager : Node
 		}
 		
 		enemyUnits.Insert(pos, unit);
+		
+		//Testing enemy unit placement DELETE later
+		enemyUnits.Insert(1, test1);
 	}
 	
 	public List<PartyUnit> GetPartyList()
@@ -88,5 +99,20 @@ public partial class UnitManager : Node
 	public List<EnemyUnit> GetEnemyList()
 	{
 		return enemyUnits;
+	}
+	
+	public int GetRemainingPartyUnits()
+	{
+		var count = 0;
+		
+		for(int i = 0; i < GetPartyList().Count; i++)
+		{
+			if(GetPartyList()[i].IsAlive)
+			{
+				count++;
+			}
+		}
+		
+		return count;
 	}
 }
