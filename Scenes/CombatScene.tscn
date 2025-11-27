@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
 [ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
 
-[node name="CombatScene" type="Node2D" node_paths=PackedStringArray("testUnitSprite", "testSelectedStage", "endTurnButton")]
+[node name="CombatScene" type="Node2D" node_paths=PackedStringArray("testUnitSprite", "testSelectedStage", "endTurnButton", "playerSlots", "enemySlots")]
 script = ExtResource("1_dqj0d")
 testUnitSprite = NodePath("TestUnitSprite")
 testSelectedStage = NodePath("TestCombatStage")
 endTurnButton = NodePath("CombatControl/SampleButton")
+playerSlots = [NodePath("PartyPositions/1PartySlot"), NodePath("PartyPositions/2PartySlot"), NodePath("PartyPositions/3PartySlot"), NodePath("PartyPositions/4PartySlot")]
+enemySlots = [NodePath("EnemyPositions/1EnemySlot"), NodePath("EnemyPositions/2EnemySlot"), NodePath("EnemyPositions/3EnemySlot"), NodePath("EnemyPositions/4EnemySlot"), NodePath("EnemyPositions/5EnemySlot"), NodePath("EnemyPositions/6EnemySlot")]
 
 [node name="TestUnitSprite" type="Sprite2D" parent="."]
 visible = false

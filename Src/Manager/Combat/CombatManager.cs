@@ -13,6 +13,10 @@ public partial class CombatManager : Node
 	[Export] public CombatStage testSelectedStage; //Remove later
 	
 	[Export] private Button endTurnButton;
+	
+	[Export] private PartySlot[] playerSlots;
+	[Export] private EnemySlot[] enemySlots;
+	
 	private CombatState state;
 	private CombatState nextState;
 	
@@ -176,21 +180,47 @@ public partial class CombatManager : Node
 	
 	private void SetPartyPositions()
 	{
-		Vector2 position;
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
+		if(UnitManager.Instance.GetPartyList() != null)
+		{
+			var currSlot = 1;
+			for(int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
+			{	
+				if(UnitManager.Instance.GetPartyList()[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
+				{
+					UnitManager.Instance.GetPartyList()[i].PositionSlot = currSlot;
+					
+					//Prolly can just do i, just checking to see if proper slot is taken
+					SpawnCharacter(UnitManager.Instance.GetPartyList()[i], playerSlots[UnitManager.Instance.GetPartyList()[i].PositionSlot - 1]);
+				}
+				
+				//Not needed for fixed number of units that matches the slot amount, just have here for now
+				if(playerSlots[currSlot - 1].SlotTaken && !(currSlot >= playerSlots.Length))
+				{
+					currSlot++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
 		
-		// position = new Vector3(409, 295)
-		//Instantiate(unit, position, Quaternion.identity)
 	}
 	
-	private void SpawnCharacters(PartyUnit unit, Vector2 pos)
+	private void SpawnCharacter(PartyUnit unit, PartySlot pSlot)
+	{
+		// After spawning unit.InCombat = true
+	}
+	
+	private void SetEnemyPositions()
 	{
 		
 	}
 	
-	private void SetEnemyPositions()
+	private void SpawnEnemy(EnemyUnit unit, Node2D eSlot)
 	{
 		
 	}

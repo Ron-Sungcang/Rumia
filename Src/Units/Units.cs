@@ -12,6 +12,7 @@ public partial class Units : Node2D, IUnit
 	[Export] private int currHP;
 	[Export] public bool IsAlive{get;set;} = false;
 	[Export] public int PositionSlot{get; set;}
+	[Export] public bool InCombat{get;set;} = false;
 	[Export] public Sprite2D UnitSprite{get;set;}
 	
 	public int CurrentHP

@@ -7,6 +7,11 @@ public interface ISlot
 	{
 		get;set;
 	}
+	
+	bool SlotTaken
+	{
+		get; set;
+	}
 }
 
 public interface IPlayerSlot: ISlot

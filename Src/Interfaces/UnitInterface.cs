@@ -27,6 +27,11 @@ public interface IUnit
 		get; set;
 	}
 	
+	bool InCombat
+	{
+		get; set;
+	}
+	
 	Sprite2D UnitSprite
 	{
 		get; set;

@@ -4,6 +4,7 @@ using System;
 public partial class EnemySlot : Node
 {
 	[Export] public int SlotNumber{get; set;}
+	[Export] public bool SlotTaken{get; set;} = false;
 	private EnemyUnit eUnit;
 	
 	public EnemyUnit EUnit
