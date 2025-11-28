@@ -217,10 +217,33 @@ public partial class CombatManager : Node
 	
 	private void SetEnemyPositions()
 	{
-		
+		if(UnitManager.Instance.GetEnemyList() != null)
+		{
+			var currSlot = 1;
+			for(int i = 0; i < UnitManager.Instance.GetEnemyList().Count; i++)
+			{	
+				if(UnitManager.Instance.GetEnemyList()[i].IsAlive && (!enemySlots[currSlot - 1].SlotTaken))
+				{
+					UnitManager.Instance.GetEnemyList()[i].PositionSlot = currSlot;
+					
+					//Prolly can just do i, just checking to see if proper slot is taken
+					SpawnEnemy(UnitManager.Instance.GetEnemyList()[i], enemySlots[UnitManager.Instance.GetEnemyList()[i].PositionSlot - 1]);
+				}
+				
+				//Not needed for fixed number of units that matches the slot amount, just have here for now
+				if(enemySlots[currSlot - 1].SlotTaken && !(currSlot >= enemySlots.Length))
+				{
+					currSlot++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
 	}
 	
-	private void SpawnEnemy(EnemyUnit unit, Node2D eSlot)
+	private void SpawnEnemy(EnemyUnit unit, EnemySlot eSlot)
 	{
 		
 	}
