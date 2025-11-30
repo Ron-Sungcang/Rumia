@@ -183,62 +183,52 @@ public partial class CombatManager : Node
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
-		if(UnitManager.Instance.GetPartyList() != null)
+		var partyList = UnitManager.Instance.GetPartyList();
+		if(partyList == null)
 		{
-			var currSlot = 1;
-			for(int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
-			{	
-				if(UnitManager.Instance.GetPartyList()[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
-				{
-					UnitManager.Instance.GetPartyList()[i].PositionSlot = currSlot;
-					
-					//Prolly can just do i, just checking to see if proper slot is taken
-					SpawnCharacter(UnitManager.Instance.GetPartyList()[i], playerSlots[UnitManager.Instance.GetPartyList()[i].PositionSlot - 1]);
-				}
-				
-				//Not needed for fixed number of units that matches the slot amount, just have here for now
-				if(playerSlots[currSlot - 1].SlotTaken && !(currSlot >= playerSlots.Length))
-				{
-					currSlot++;
-				}
-				else
-				{
-					break;
-				}
-			}
+			GD.Print("Party list is null");
+			return;
 		}
 		
+		var currSlot = 1;
+		for(int i = 0; i < partyList.Count && currSlot < playerSlots.Length + 1; i++)
+		{	
+			if(partyList[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
+			{
+				//Should party position be set here?
+				partyList[i].PositionSlot = currSlot;
+				
+				//Prolly can just do i, just checking to see if proper slot is taken
+				SpawnCharacter(partyList[i], playerSlots[partyList[i].PositionSlot - 1]);
+				currSlot++;
+			}
+		}
 	}
 	
 	private void SpawnCharacter(PartyUnit unit, PartySlot pSlot)
 	{
+		
 		// After spawning unit.InCombat = true
 	}
 	
 	private void SetEnemyPositions()
 	{
-		if(UnitManager.Instance.GetEnemyList() != null)
+		var enemyList = UnitManager.Instance.GetEnemyList();
+		if(enemyList == null)
 		{
-			var currSlot = 1;
-			for(int i = 0; i < UnitManager.Instance.GetEnemyList().Count; i++)
-			{	
-				if(UnitManager.Instance.GetEnemyList()[i].IsAlive && (!enemySlots[currSlot - 1].SlotTaken))
-				{
-					UnitManager.Instance.GetEnemyList()[i].PositionSlot = currSlot;
-					
-					//Prolly can just do i, just checking to see if proper slot is taken
-					SpawnEnemy(UnitManager.Instance.GetEnemyList()[i], enemySlots[UnitManager.Instance.GetEnemyList()[i].PositionSlot - 1]);
-				}
+			GD.Print("Enemy list is null");
+			return;
+		}
+		
+		var currSlot = 1;
+		for(int i = 0; i < enemyList.Count && currSlot < enemySlots.Length + 1; i++)
+		{	
+			if(enemyList[i].IsAlive && (!enemySlots[currSlot - 1].SlotTaken))
+			{
+				enemyList[i].PositionSlot = currSlot;
 				
-				//Not needed for fixed number of units that matches the slot amount, just have here for now
-				if(enemySlots[currSlot - 1].SlotTaken && !(currSlot >= enemySlots.Length))
-				{
-					currSlot++;
-				}
-				else
-				{
-					break;
-				}
+				SpawnEnemy(enemyList[i], enemySlots[enemyList[i].PositionSlot - 1]);
+				currSlot++;
 			}
 		}
 	}
