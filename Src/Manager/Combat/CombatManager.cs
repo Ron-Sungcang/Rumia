@@ -7,7 +7,7 @@ using System;
 public partial class CombatManager : Node
 {
 	// For now a sample button, in the future we can simply include the combat UI to this manager
-	[Export] public Sprite2D testUnitSprite;
+	//[Export] public Sprite2D testUnitSprite;
 	
 	// This chould be selected from the overworld -> sent to Game Manager, where the combat scene should be able to pull from
 	[Export] public CombatStage testSelectedStage; //Remove later
@@ -138,33 +138,33 @@ public partial class CombatManager : Node
 			GD.Print("Number of enemies: ", testSelectedStage.NumEnemiesTotal);
 		}
 		
-		// Setting sprites here for now to test
-		if(UnitManager.Instance.GetPartyList() != null)
-		{
-			GD.Print("Number of party members: ", UnitManager.Instance.GetPartyList().Count);
-			for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
-			{
-				UnitManager.Instance.GetPartyList()[i].UnitSprite = testUnitSprite;
-				UnitManager.Instance.GetPartyList()[i].UnitSprite.Visible = true;
-			}
-		}
-		else
-		{
-			GD.Print("Party list null");
-		}
-		
-		if(UnitManager.Instance.GetEnemyList() != null)
-		{
-			for (int j = 0; j < UnitManager.Instance.GetEnemyList().Count; j++)
-			{
-				UnitManager.Instance.GetEnemyList()[j].UnitSprite = testUnitSprite;
-				UnitManager.Instance.GetEnemyList()[j].UnitSprite.Visible = true;
-			}
-		}
-		else
-		{
-			GD.Print("Enemy list null");
-		}
+		//// Setting sprites here for now to test
+		//if(UnitManager.Instance.GetPartyList() != null)
+		//{
+			//GD.Print("Number of party members: ", UnitManager.Instance.GetPartyList().Count);
+			//for (int i = 0; i < UnitManager.Instance.GetPartyList().Count; i++)
+			//{
+				//UnitManager.Instance.GetPartyList()[i].UnitSprite = testUnitSprite;
+				//UnitManager.Instance.GetPartyList()[i].UnitSprite.Visible = true;
+			//}
+		//}
+		//else
+		//{
+			//GD.Print("Party list null");
+		//}
+		//
+		//if(UnitManager.Instance.GetEnemyList() != null)
+		//{
+			//for (int j = 0; j < UnitManager.Instance.GetEnemyList().Count; j++)
+			//{
+				//UnitManager.Instance.GetEnemyList()[j].UnitSprite = testUnitSprite;
+				//UnitManager.Instance.GetEnemyList()[j].UnitSprite.Visible = true;
+			//}
+		//}
+		//else
+		//{
+			//GD.Print("Enemy list null");
+		//}
 		
 		GD.Print("Current game state: " + GameManager.Instance.GetGameState());
 		

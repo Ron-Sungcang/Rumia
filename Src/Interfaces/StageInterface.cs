@@ -61,4 +61,9 @@ public interface ICombatStage: IStage
 	{
 		get; set;
 	}
+	
+	EnemyRes[] ListOfEnemies
+	{
+		get; set;
+	}
 }

@@ -24,6 +24,7 @@ remainingUnits = 2
 remainingEnemies = 2
 NumEnemiesTotal = 2
 NumEnemySlots = 4
+ListOfEnemies = Array[Object]([])
 StageNumber = 1
 StageName = "TestStage"
 

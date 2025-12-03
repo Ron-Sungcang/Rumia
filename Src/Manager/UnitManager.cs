@@ -22,15 +22,15 @@ public partial class UnitManager : Node
 		PartyUnit character = new PartyUnit();
 		EnemyUnit enemy = new EnemyUnit();
 		
-		character.UnitName = "Sample Player";
-		character.MaxHP = 10;
-		character.CurrentHP = character.MaxHP;
-		character.IsAlive = true;
-		
-		enemy.UnitName = "Sample Enemy";
-		enemy.MaxHP = 10;
-		enemy.CurrentHP = enemy.MaxHP;
-		enemy.IsAlive = true;
+		//character.UnitName = "Sample Player";
+		//character.MaxHP = 10;
+		//character.CurrentHP = character.MaxHP;
+		//character.IsAlive = true;
+		//
+		//enemy.UnitName = "Sample Enemy";
+		//enemy.MaxHP = 10;
+		//enemy.CurrentHP = enemy.MaxHP;
+		//enemy.IsAlive = true;
 		
 		partyUnits = new List<PartyUnit>();
 		enemyUnits = new List<EnemyUnit>();

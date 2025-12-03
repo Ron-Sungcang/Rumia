@@ -3,15 +3,6 @@ using System;
 
 public interface IUnit
 {
-	string UnitName{
-		get; set;
-	}
-	
-	int MaxHP
-	{
-		get; set;
-	}
-	
 	int CurrentHP
 	{
 		get; set;
@@ -28,11 +19,6 @@ public interface IUnit
 	}
 	
 	bool InCombat
-	{
-		get; set;
-	}
-	
-	Sprite2D UnitSprite
 	{
 		get; set;
 	}

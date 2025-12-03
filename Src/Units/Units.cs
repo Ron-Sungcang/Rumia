@@ -7,13 +7,10 @@ using System;
 */
 public partial class Units : Node2D, IUnit
 {
-	[Export] public string UnitName{get;set;} = "";
-	[Export] public int MaxHP{get;set;} = 1;
 	[Export] private int currHP;
 	[Export] public bool IsAlive{get;set;} = false;
 	[Export] public int PositionSlot{get; set;}
 	[Export] public bool InCombat{get;set;} = false;
-	[Export] public Sprite2D UnitSprite{get;set;}
 	
 	public int CurrentHP
 	{
@@ -31,7 +28,7 @@ public partial class Units : Node2D, IUnit
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		CurrentHP = MaxHP;
+		//CurrentHP = MaxHP;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

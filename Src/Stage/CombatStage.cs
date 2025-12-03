@@ -10,6 +10,8 @@ public partial class CombatStage : Stage, ICombatStage
 	[Export] public bool CombatStageOver{get; set;} = false;
 	[Export] public bool CombatVictory{get; set;} = false;
 	
+	[Export] public EnemyRes[] ListOfEnemies{get; set;}
+	
 	// Declare like this if there are more features than just get and set
 	public int RemainingUnits
 	{
