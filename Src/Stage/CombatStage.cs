@@ -45,6 +45,10 @@ public partial class CombatStage : Stage, ICombatStage
 	{
 		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();
 	}
+	
+	//TODO: Initialize(CombatStage Res) 
+	// The remaining enemies will equal total enemy in resource file
+	// Remaining unit will be grabbed from UnitManager
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
