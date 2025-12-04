@@ -130,13 +130,6 @@ public partial class CombatManager : Node
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
 		SetProcess(true);
-		// Setting this game state should occur when enetering combat scene not here
-		
-		//Gotta do a check if a stage is selected for combat scene
-		if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
-		{
-			GD.Print("Number of enemies: ", testSelectedStage.NumEnemiesTotal);
-		}
 		
 		//// Setting sprites here for now to test
 		//if(UnitManager.Instance.GetPartyList() != null)

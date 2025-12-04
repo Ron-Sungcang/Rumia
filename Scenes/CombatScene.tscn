@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx74jmtfaegl6"]
+[gd_scene load_steps=5 format=3 uid="uid://bx74jmtfaegl6"]
 
 [ext_resource type="Texture2D" uid="uid://crto01nnmtftd" path="res://Assets/Images/Screenshot 2025-11-06 192018.png" id="1_2mqg5"]
 [ext_resource type="Script" uid="uid://bsvquug6vsnse" path="res://Src/Manager/Combat/CombatManager.cs" id="1_dqj0d"]
-[ext_resource type="Script" uid="uid://dx4al0gbfbhuy" path="res://Src/Stage/CombatStage.cs" id="4_eel7g"]
 [ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
 [ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("testSelectedStage", "endTurnButton", "playerSlots", "enemySlots")]
 script = ExtResource("1_dqj0d")
-testSelectedStage = NodePath("TestCombatStage")
+testSelectedStage = NodePath("")
 endTurnButton = NodePath("CombatControl/SampleButton")
 playerSlots = [NodePath("PartyPositions/1PartySlot"), NodePath("PartyPositions/2PartySlot"), NodePath("PartyPositions/3PartySlot"), NodePath("PartyPositions/4PartySlot")]
 enemySlots = [NodePath("EnemyPositions/1EnemySlot"), NodePath("EnemyPositions/2EnemySlot"), NodePath("EnemyPositions/3EnemySlot"), NodePath("EnemyPositions/4EnemySlot"), NodePath("EnemyPositions/5EnemySlot"), NodePath("EnemyPositions/6EnemySlot")]
@@ -17,16 +16,6 @@ enemySlots = [NodePath("EnemyPositions/1EnemySlot"), NodePath("EnemyPositions/2E
 position = Vector2(498.00006, 309.00003)
 scale = Vector2(0.6748691, 0.6493456)
 texture = ExtResource("1_2mqg5")
-
-[node name="TestCombatStage" type="Sprite2D" parent="."]
-script = ExtResource("4_eel7g")
-remainingUnits = 2
-remainingEnemies = 2
-NumEnemiesTotal = 2
-NumEnemySlots = 4
-ListOfEnemies = Array[Object]([])
-StageNumber = 1
-StageName = "TestStage"
 
 [node name="CombatControl" type="Control" parent="."]
 layout_mode = 3

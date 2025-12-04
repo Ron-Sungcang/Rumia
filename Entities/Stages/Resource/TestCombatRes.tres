@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://d3247uctf7d7o"]
+
+[ext_resource type="Script" uid="uid://cdhf0ybox31xu" path="res://Src/Stage/Resource/CombatStageRes.cs" id="1_30a32"]
+[ext_resource type="PackedScene" uid="uid://b3ywdyij660u5" path="res://Entities/Stages/Scene/TestCombatStage.tscn" id="1_lfgsc"]
+
+[resource]
+script = ExtResource("1_30a32")
+ListOfEnemies = null
+StagePrefab = ExtResource("1_lfgsc")

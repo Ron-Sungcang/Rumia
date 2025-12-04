@@ -3,11 +3,7 @@ using System;
 
 public partial class Stage : Node2D, IStage
 {
-	[Export] public int StageNumber{get; set;} = 0;
-	[Export] public string StageName{get; set;} = "";
 	[Export] private bool stageCompleted = false;
-	[Export] public Stage PrevStage{get; set;} = null;
-	[Export] public Stage NextStage{get; set;} = null;
 	
 	public bool StageCompleted
 	{
@@ -16,10 +12,10 @@ public partial class Stage : Node2D, IStage
 		{
 			stageCompleted = value;
 			
-			if(stageCompleted && NextStage != null)
-			{
-				NextStage.Visible = true;
-			}
+			//if(stageCompleted && NextStage != null)
+			//{
+				//NextStage.Visible = true;
+			//}
 		}
 	}
 	
