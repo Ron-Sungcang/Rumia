@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class CombatStage : Stage, ICombatStage
 {
 	[Export] private int remainingUnits;
@@ -39,6 +40,8 @@ public partial class CombatStage : Stage, ICombatStage
 			}
 		}
 	}
+	
+	//TODO: Instead of Ready(), create a Initialize function
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

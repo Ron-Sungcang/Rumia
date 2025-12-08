@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class PartyRes : Resource
 {
 	[Export] public string UnitName {get; set;}

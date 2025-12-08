@@ -10,7 +10,8 @@ public partial class CombatManager : Node
 	//[Export] public Sprite2D testUnitSprite;
 	
 	// This chould be selected from the overworld -> sent to Game Manager, where the combat scene should be able to pull from
-	[Export] public CombatStage testSelectedStage; //Remove later
+	[Export] public PackedScene testPacked; // Only here for testing
+	private CombatStage testSelectedStage; //Remove later, game manager should track the instance of selected stage
 	
 	[Export] private Button endTurnButton;
 	
@@ -39,6 +40,7 @@ public partial class CombatManager : Node
 	public override void _Ready()
 	{
 		endTurnButton.Pressed += EndTurnPressed;
+		testSelectedStage = testPacked.Instantiate<CombatStage>();
 		// TODO: Instantiate units involved in combat (Use GameManager to access party)
 		SetProcess(false);
 		StartCombat();
@@ -166,7 +168,7 @@ public partial class CombatManager : Node
 		endTurnButton.Visible = false;
 		
 		//Setting the nodes to its positions in the scene
-		SetPartyPositions();
+		//SetPartyPositions();
 		
 		StartTransition(CombatState.StartTurn);
 	}

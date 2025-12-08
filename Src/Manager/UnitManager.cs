@@ -10,6 +10,9 @@ public partial class UnitManager : Node
 {
 	public static UnitManager Instance { get; private set; }
 	// For now these are just Units
+	[Export] private PartyRes[] partyRes;
+	[Export] private EnemyRes[] enemyRes;
+	
 	private List<PartyUnit> partyUnits;
 	private List<EnemyUnit> enemyUnits;
 	
