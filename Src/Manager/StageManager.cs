@@ -14,6 +14,7 @@ public partial class StageManager : Node
 	public override void _Ready()
 	{
 		Instance = this;
+		GD.Print("Stage manager start");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgmjykwrka0sc"]
+
+[ext_resource type="Script" uid="uid://bxkbtumptcuix" path="res://Src/Manager/StageManager.cs" id="1_xylyp"]
+
+[node name="StageManager" type="Node2D" node_paths=PackedStringArray("OverWorldStages")]
+script = ExtResource("1_xylyp")
+OverWorldStages = []
