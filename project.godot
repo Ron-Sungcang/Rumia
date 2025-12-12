@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Src/Manager/GameManager.cs"
 UnitManager="*res://Src/Manager/UnitManager.cs"
+StageManager="*res://Src/Manager/StageManager.cs"
 
 [display]
 

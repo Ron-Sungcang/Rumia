@@ -4,6 +4,8 @@ using System;
 [GlobalClass]
 public partial class CombatStage : Stage, ICombatStage
 {
+	private CombatStageRes resource;
+	
 	[Export] private int remainingUnits;
 	[Export] private int remainingEnemies;
 	[Export] public bool CombatStageOver{get; set;} = false;
@@ -41,20 +43,22 @@ public partial class CombatStage : Stage, ICombatStage
 		}
 	}
 	
-	//TODO: Instead of Ready(), create a Initialize function
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();
 	}
-	
-	//TODO: Initialize(CombatStage Res) 
-	// The remaining enemies will equal total enemy in resource file
-	// Remaining unit will be grabbed from UnitManager
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	
+	//TODO: Instead of Ready(), create a Initialize function
+	public void Initialize(CombatStageRes res)
+	{
+		resource = res;
+		
+		RemainingEnemies = resource.TotalEnemies;
+		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();
 	}
 }
