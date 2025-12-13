@@ -58,9 +58,16 @@ public partial class CombatStage : Stage, ICombatStage
 	{
 		resource = res;
 		
-		RemainingEnemies = resource.ListOfEnemies.Length;
-		UnitManager.Instance.SetEnemyRes(resource.ListOfEnemies);
+		//This if is to secure that the num of enemies are equal
+		//We can remove this and jsut be sure when making resource files
+		//Or simply just use arr length to count
+		if(resource.TotalEnemies != resource.ListOfEnemies.Length)
+		{
+			resource.TotalEnemies = resource.ListOfEnemies.Length;
+		}
 		
+		RemainingEnemies = resource.TotalEnemies;
+		UnitManager.Instance.SetEnemyRes(resource.ListOfEnemies);
 		
 		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();;
 	}

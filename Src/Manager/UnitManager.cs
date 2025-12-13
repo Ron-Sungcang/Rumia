@@ -25,6 +25,8 @@ public partial class UnitManager : Node
 		
 		partyUnits = new List<PartyUnit>();
 		enemyUnits = new List<EnemyUnit>();
+		
+		AddToPartyTeam();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +34,7 @@ public partial class UnitManager : Node
 	{
 	}
 	
-	public void AddToPartyTeam(int pos, PartyUnit unit)
+	public void AddToPartyTeam()
 	{
 		for(int i = 0; i < partyRes.Length; i++)
 		{
@@ -41,7 +43,7 @@ public partial class UnitManager : Node
 		}
 	}
 	
-	public void AddToEnemyTeam(int pos, EnemyUnit unit)
+	public void AddToEnemyTeam()
 	{
 		// For encounters that might have more than 4 enemies
 		// Maybe in a Stage, have a total num of enemies
@@ -63,9 +65,13 @@ public partial class UnitManager : Node
 		//
 		////Testing enemy unit placement DELETE later
 		//enemyUnits.Insert(1, test1);
-		
+		if(enemyRes == null)
+		{
+			return;
+		}
 		for(int i = 0; i < enemyRes.Length; i++)
 		{
+			GD.Print("Succesfully added enemby on index: "+i);
 			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
 			enemyUnits.Insert(i, eUnit);
 		}
@@ -84,6 +90,7 @@ public partial class UnitManager : Node
 	public void SetEnemyRes(EnemyRes[] res)
 	{
 		enemyRes = res;
+		AddToEnemyTeam();
 	}
 	
 	public int GetRemainingPartyUnits()

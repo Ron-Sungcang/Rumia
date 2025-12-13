@@ -6,6 +6,7 @@
 [node name="SampleUnit" type="Node2D"]
 script = ExtResource("1_mxutr")
 currHP = 4
+IsAlive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_j5rs1")
