@@ -22,24 +22,9 @@ public partial class UnitManager : Node
 		Instance = this;
 		
 		GD.Print("Starting UnitManager");
-		PartyUnit character = new PartyUnit();
-		EnemyUnit enemy = new EnemyUnit();
-		
-		//character.UnitName = "Sample Player";
-		//character.MaxHP = 10;
-		//character.CurrentHP = character.MaxHP;
-		//character.IsAlive = true;
-		//
-		//enemy.UnitName = "Sample Enemy";
-		//enemy.MaxHP = 10;
-		//enemy.CurrentHP = enemy.MaxHP;
-		//enemy.IsAlive = true;
 		
 		partyUnits = new List<PartyUnit>();
 		enemyUnits = new List<EnemyUnit>();
-		
-		AddToPartyTeam(0, character);
-		AddToEnemyTeam(0, enemy);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,49 +34,41 @@ public partial class UnitManager : Node
 	
 	public void AddToPartyTeam(int pos, PartyUnit unit)
 	{
-		var test1 = unit; var test2 = unit; var test3 = unit;
-		
-		if(partyUnits == null)
+		for(int i = 0; i < partyRes.Length; i++)
 		{
-			GD.Print("Party list is not initialized");
-			return;
+			var pUnit = partyRes[i].UnitPrefab.Instantiate() as PartyUnit;
+			partyUnits.Insert(i, pUnit);
 		}
-		else if(partyUnits.Count >= 4)
-		{
-			GD.Print("Party is full, cant add anymore");
-			return;
-		}
-		
-		partyUnits.Insert(pos, unit);
-		
-		//Test units in party DELETE later
-		partyUnits.Insert(1, test1);
-		partyUnits.Insert(2, test2);
-		partyUnits.Insert(3, test3);
 	}
 	
 	public void AddToEnemyTeam(int pos, EnemyUnit unit)
 	{
 		// For encounters that might have more than 4 enemies
 		// Maybe in a Stage, have a total num of enemies
-		var test1 = unit;
+		//var test1 = unit;
+		//
+		//if(enemyUnits == null)
+		//{
+			//GD.Print("Enemy list is not initialized");
+			//return;
+		//}
+		//else if(enemyUnits.Count >= 4)
+		//{
+			////Instead of a static 4, turn this to take the stage count
+			//GD.Print("Enemy count exceeds list size");
+			//return;
+		//}
+		//
+		//enemyUnits.Insert(pos, unit);
+		//
+		////Testing enemy unit placement DELETE later
+		//enemyUnits.Insert(1, test1);
 		
-		if(enemyUnits == null)
+		for(int i = 0; i < enemyRes.Length; i++)
 		{
-			GD.Print("Enemy list is not initialized");
-			return;
+			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
+			enemyUnits.Insert(i, eUnit);
 		}
-		else if(enemyUnits.Count >= 4)
-		{
-			//Instead of a static 4, turn this to take the stage count
-			GD.Print("Enemy count exceeds list size");
-			return;
-		}
-		
-		enemyUnits.Insert(pos, unit);
-		
-		//Testing enemy unit placement DELETE later
-		enemyUnits.Insert(1, test1);
 	}
 	
 	public List<PartyUnit> GetPartyList()
@@ -102,6 +79,11 @@ public partial class UnitManager : Node
 	public List<EnemyUnit> GetEnemyList()
 	{
 		return enemyUnits;
+	}
+	
+	public void SetEnemyRes(EnemyRes[] res)
+	{
+		enemyRes = res;
 	}
 	
 	public int GetRemainingPartyUnits()

@@ -3,11 +3,9 @@
 [ext_resource type="Script" uid="uid://cxwt0gvledu4e" path="res://Src/Units/EnemyUnits/EnemyUnit.cs" id="1_mxutr"]
 [ext_resource type="Texture2D" uid="uid://bm6dshcruveop" path="res://icon.svg" id="2_j5rs1"]
 
-[node name="SampleUnit" type="Node2D" node_paths=PackedStringArray("UnitSprite")]
+[node name="SampleUnit" type="Node2D"]
 script = ExtResource("1_mxutr")
-MaxHP = 4
 currHP = 4
-UnitSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_j5rs1")

@@ -58,7 +58,10 @@ public partial class CombatStage : Stage, ICombatStage
 	{
 		resource = res;
 		
-		RemainingEnemies = resource.TotalEnemies;
-		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();
+		RemainingEnemies = resource.ListOfEnemies.Length;
+		UnitManager.Instance.SetEnemyRes(resource.ListOfEnemies);
+		
+		
+		RemainingUnits = UnitManager.Instance.GetRemainingPartyUnits();;
 	}
 }

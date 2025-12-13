@@ -132,7 +132,7 @@ public partial class CombatManager : Node
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
 		
-		//LoadCombatStage();
+		LoadCombatStageRes();
 		
 		SetProcess(true);
 		
@@ -148,14 +148,11 @@ public partial class CombatManager : Node
 		StartTransition(CombatState.StartTurn);
 	}
 	
-	private void LoadCombatStage()
+	private void LoadCombatStageRes()
 	{
 		//From a stage manager, get the selected stage
-		//testSelectedStage = resource.StagePrefab.Instantiate() as CombatStage;
-//
-		//GetTree().Root.AddChild(testSelectedStage);
-		//
-		//testSelectedStage.Initialize(resource);
+		testSelectedStage = StageManager.Instance.SelectedCombatRes.StagePrefab.Instantiate() as CombatStage;
+		testSelectedStage.Initialize(StageManager.Instance.SelectedCombatRes);
 	}
 	
 	private void SetPartyPositions()
