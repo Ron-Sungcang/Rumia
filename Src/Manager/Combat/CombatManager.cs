@@ -132,6 +132,9 @@ public partial class CombatManager : Node
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
 		
+		ClearEnemySlots();
+		ClearPlayerSlots();
+		
 		LoadCombatStageRes();
 		
 		SetProcess(true);
@@ -223,6 +226,22 @@ public partial class CombatManager : Node
 		transitionTimer = 0f;
 		nextState = next;
 		state = CombatState.Transition;
+	}
+	
+	public void ClearEnemySlots()
+	{
+		for(int i = 0; i < enemySlots.Length; i++)
+		{
+			enemySlots[i].ClearScene();
+		}
+	}
+	
+	public void ClearPlayerSlots()
+	{
+		for(int i = 0; i < playerSlots.Length; i++)
+		{
+			playerSlots[i].ClearScene();
+		}
 	}
 	
 	public void EndTurnPressed()
