@@ -154,6 +154,11 @@ public partial class CombatManager : Node
 	private void LoadCombatStageRes()
 	{
 		//From a stage manager, get the selected stage
+		if(StageManager.Instance.SelectedCombatRes.EnemySlots > 6)
+		{
+			GD.Print("Invalid number of enemy slots");
+		}
+		
 		testSelectedStage = StageManager.Instance.SelectedCombatRes.StagePrefab.Instantiate() as CombatStage;
 		testSelectedStage.Initialize(StageManager.Instance.SelectedCombatRes);
 	}
@@ -163,7 +168,7 @@ public partial class CombatManager : Node
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
-		var partyList = UnitManager.Instance.GetPartyList();
+		var partyList = UnitManager.Instance.GetPartyPrefabs();
 		if(partyList == null)
 		{
 			GD.Print("Party list is null");
@@ -172,7 +177,7 @@ public partial class CombatManager : Node
 		
 		var currSlot = 1;
 		for(int i = 0; i < partyList.Count && currSlot < playerSlots.Length + 1; i++)
-		{	
+		{
 			if(partyList[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
 			{
 				//Should party position be set here?
@@ -187,13 +192,12 @@ public partial class CombatManager : Node
 	
 	private void SpawnCharacter(PartyUnit unit, PartySlot pSlot)
 	{
-		
 		// After spawning unit.InCombat = true
 	}
 	
 	private void SetEnemyPositions()
 	{
-		var enemyList = UnitManager.Instance.GetEnemyList();
+		var enemyList = UnitManager.Instance.GetEnemyPrefabs();
 		if(enemyList == null)
 		{
 			GD.Print("Enemy list is null");
