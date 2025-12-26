@@ -5,12 +5,9 @@ using System;
 * Script in charge of the Combat scene
 */
 public partial class CombatManager : Node
-{
-	// For now a sample button, in the future we can simply include the combat UI to this manager
-	//[Export] public Sprite2D testUnitSprite;
-	
+{	
 	// This chould be selected from the overworld -> sent to Game Manager, where the combat scene should be able to pull from
-	[Export] public PackedScene testPacked; // Only here for testing
+	[Export] public PackedScene testPacked; // Only here for testing, test combat stage
 	private CombatStage testSelectedStage; //Remove later, game manager should track the instance of selected stage
 	
 	[Export] private Button endTurnButton;
@@ -41,7 +38,6 @@ public partial class CombatManager : Node
 	{
 		endTurnButton.Pressed += EndTurnPressed;
 		testSelectedStage = testPacked.Instantiate<CombatStage>();
-		// TODO: Instantiate units involved in combat (Use GameManager to access party)
 		SetProcess(false);
 		StartCombat();
 	}
@@ -166,9 +162,6 @@ public partial class CombatManager : Node
 	
 	private void SetPartyPositions()
 	{
-		// Seperate out player units and enemy units
-		// Party units will not need party slots since we are at a fixed number (4)
-		// Enemies will need party slots for encounters where there are more enemies than slots
 		var partyList = UnitManager.Instance.GetPartyList();
 		if(partyList == null)
 		{
@@ -181,10 +174,8 @@ public partial class CombatManager : Node
 		{
 			if(partyList[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
 			{
-				//Should party position be set here?
 				partyList[i].PositionSlot = currSlot;
 				
-				//Prolly can just do i, just checking to see if proper slot is taken
 				SpawnCharacter(partyList[i], playerSlots[partyList[i].PositionSlot - 1]);
 				currSlot++;
 			}
