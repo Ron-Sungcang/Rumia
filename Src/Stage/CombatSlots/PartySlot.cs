@@ -39,14 +39,18 @@ public partial class PartySlot : Node, IPartySlot
 		
 		UnitScene = newScene;
 		AddChild(UnitScene);
+		
+		UnitScene.InCombat = true;
 		SlotTaken = true;
+		
+		GD.Print("Successfully added Party unit: " + UnitScene + " to slot: " + SlotNumber);
 	}
 	
 	public void ClearScene()
 	{
 		if(!SlotTaken)
 		{
-			GD.Print("PartySlot, ClearScene, Party Slot: " + SlotNumber + "is empty");
+			GD.Print("PartySlot, ClearScene, Party Slot: " + SlotNumber + " is empty");
 			return;
 		}
 		else if(GetChildCount() <= 0)
@@ -56,6 +60,7 @@ public partial class PartySlot : Node, IPartySlot
 		}
 		
 		UnitScene.QueueFree();
+		UnitScene.InCombat = false;
 		UnitScene = null;
 		SlotTaken = false;
 	}

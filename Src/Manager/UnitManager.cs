@@ -47,33 +47,13 @@ public partial class UnitManager : Node
 	
 	public void AddToEnemyTeam()
 	{
-		// For encounters that might have more than 4 enemies
-		// Maybe in a Stage, have a total num of enemies
-		//var test1 = unit;
-		//
-		//if(enemyUnits == null)
-		//{
-			//GD.Print("Enemy list is not initialized");
-			//return;
-		//}
-		//else if(enemyUnits.Count >= 4)
-		//{
-			////Instead of a static 4, turn this to take the stage count
-			//GD.Print("Enemy count exceeds list size");
-			//return;
-		//}
-		//
-		//enemyUnits.Insert(pos, unit);
-		//
-		////Testing enemy unit placement DELETE later
-		//enemyUnits.Insert(1, test1);
 		if(enemyRes == null)
 		{
 			return;
 		}
 		for(int i = 0; i < enemyRes.Length; i++)
 		{
-			GD.Print("Succesfully added enemby on index: " + i);
+			GD.Print("Succesfully added enemy on index: " + i);
 			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
 			enemyUnits.Insert(i, eUnit);
 		}

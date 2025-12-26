@@ -146,7 +146,8 @@ public partial class CombatManager : Node
 		endTurnButton.Visible = false;
 		
 		//Setting the nodes to its positions in the scene
-		//SetPartyPositions();
+		SetPartyPositions();
+		SetEnemyPositions();
 		
 		StartTransition(CombatState.StartTurn);
 	}
@@ -176,7 +177,7 @@ public partial class CombatManager : Node
 		}
 		
 		var currSlot = 1;
-		for(int i = 0; i < partyList.Count && currSlot < playerSlots.Length + 1; i++)
+		for(int i = 0; i < partyList.Count && currSlot < playerSlots.Length; i++)
 		{
 			if(partyList[i].IsAlive && (!playerSlots[currSlot - 1].SlotTaken))
 			{
@@ -193,6 +194,7 @@ public partial class CombatManager : Node
 	private void SpawnCharacter(PartyUnit unit, PartySlot pSlot)
 	{
 		// After spawning unit.InCombat = true
+		pSlot.AddPartyScene(unit);
 	}
 	
 	private void SetEnemyPositions()
@@ -205,7 +207,7 @@ public partial class CombatManager : Node
 		}
 		
 		var currSlot = 1;
-		for(int i = 0; i < enemyList.Count && currSlot < enemySlots.Length + 1; i++)
+		for(int i = 0; i < enemyList.Count && currSlot < enemySlots.Length; i++)
 		{	
 			if(enemyList[i].IsAlive && (!enemySlots[currSlot - 1].SlotTaken))
 			{
@@ -219,7 +221,7 @@ public partial class CombatManager : Node
 	
 	private void SpawnEnemy(EnemyUnit unit, EnemySlot eSlot)
 	{
-		
+		eSlot.AddEnemyScene(unit);
 	}
 	
 	private void StartTransition(CombatState next)

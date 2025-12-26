@@ -38,7 +38,11 @@ public partial class EnemySlot : Node, IEnemySlot
 		
 		UnitScene = newScene;
 		AddChild(UnitScene);
+		
+		UnitScene.InCombat = true;
 		SlotTaken = true;
+		
+		GD.Print("Successfully added Enemy unit: " + UnitScene + " to slot: " + SlotNumber);
 	}
 	
 	public void ClearScene()
@@ -55,6 +59,7 @@ public partial class EnemySlot : Node, IEnemySlot
 		}
 		
 		UnitScene.QueueFree();
+		UnitScene.InCombat = false;
 		UnitScene = null;
 		SlotTaken = false;
 	}
