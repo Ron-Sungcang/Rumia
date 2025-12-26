@@ -12,12 +12,25 @@ public interface ISlot
 	{
 		get; set;
 	}
-	
-	PackedScene UnitScene
+	void ClearScene();
+}
+
+public interface IPartySlot: ISlot
+{
+	PartyUnit UnitScene
 	{
 		get; set;
 	}
 	
-	void AddScene(PackedScene newScene);
-	void ClearScene();
+	void AddPartyScene(PartyUnit newScene);
+}
+
+public interface IEnemySlot: ISlot
+{
+	EnemyUnit UnitScene
+	{
+		get; set;
+	}
+	
+	void AddEnemyScene(EnemyUnit newScene);
 }

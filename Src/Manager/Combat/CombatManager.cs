@@ -168,7 +168,7 @@ public partial class CombatManager : Node
 		// Seperate out player units and enemy units
 		// Party units will not need party slots since we are at a fixed number (4)
 		// Enemies will need party slots for encounters where there are more enemies than slots
-		var partyList = UnitManager.Instance.GetPartyPrefabs();
+		var partyList = UnitManager.Instance.GetPartyList();
 		if(partyList == null)
 		{
 			GD.Print("Party list is null");
@@ -197,7 +197,7 @@ public partial class CombatManager : Node
 	
 	private void SetEnemyPositions()
 	{
-		var enemyList = UnitManager.Instance.GetEnemyPrefabs();
+		var enemyList = UnitManager.Instance.GetEnemyList();
 		if(enemyList == null)
 		{
 			GD.Print("Enemy list is null");

@@ -1,14 +1,14 @@
 using Godot;
 using System;
 
-public partial class PartySlot : Node, ISlot
+public partial class PartySlot : Node, IPartySlot
 {
 	[Export] public int SlotNumber{get;set;}
 	[Export] public bool SlotTaken{get; set;} = false;
-	private PackedScene unitScene;
+	private PartyUnit unitScene;
 	//PackedScene as PartyUnit
 	
-	public PackedScene UnitScene
+	public PartyUnit UnitScene
 	{
 		get => unitScene;
 		set => unitScene = value;
@@ -24,13 +24,39 @@ public partial class PartySlot : Node, ISlot
 	{
 	}
 	
-	public void AddScene(PackedScene newScene)
+	public void AddPartyScene(PartyUnit newScene)
 	{
+		if(SlotTaken)
+		{
+			GD.Print("PartySlot, AddPartyScene, Party Slot: " + SlotNumber + " is not empty");
+			return;
+		}
+		else if(GetChildCount() > 0)
+		{
+			GD.Print("PartySlot, AddPartyyScene, Party Slot: " + SlotNumber + " contains a child");
+			return;
+		}
+		
 		UnitScene = newScene;
+		AddChild(UnitScene);
+		SlotTaken = true;
 	}
 	
 	public void ClearScene()
 	{
+		if(!SlotTaken)
+		{
+			GD.Print("PartySlot, ClearScene, Party Slot: " + SlotNumber + "is empty");
+			return;
+		}
+		else if(GetChildCount() <= 0)
+		{
+			GD.Print("PartySlot, ClearScene, Party Slot: " + SlotNumber + " doesnt contain a child");
+			return;
+		}
 		
+		UnitScene.QueueFree();
+		UnitScene = null;
+		SlotTaken = false;
 	}
 }

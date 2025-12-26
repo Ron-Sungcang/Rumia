@@ -13,8 +13,8 @@ public partial class UnitManager : Node
 	[Export] private PartyRes[] partyRes;
 	[Export] private EnemyRes[] enemyRes;
 	
-	private List<PackedScene> partyUnits;
-	private List<PackedScene> enemyUnits;
+	private List<PartyUnit> partyUnits;
+	private List<EnemyUnit> enemyUnits;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -23,8 +23,8 @@ public partial class UnitManager : Node
 		
 		GD.Print("Starting UnitManager");
 		
-		partyUnits = new List<PackedScene>();
-		enemyUnits = new List<PackedScene>();
+		partyUnits = new List<PartyUnit>();
+		enemyUnits = new List<EnemyUnit>();
 		
 		AddToPartyTeam();
 	}
@@ -38,8 +38,8 @@ public partial class UnitManager : Node
 	{
 		for(int i = 0; i < partyRes.Length; i++)
 		{
-			//var pUnit = partyRes[i].UnitPrefab.Instantiate() as PartyUnit;
-			partyUnits.Insert(i, partyRes[i].UnitPrefab);
+			var pUnit = partyRes[i].UnitPrefab.Instantiate() as PartyUnit;
+			partyUnits.Insert(i, pUnit);
 			
 			GD.Print("Added to party: "+ (i + 1));
 		}
@@ -74,17 +74,17 @@ public partial class UnitManager : Node
 		for(int i = 0; i < enemyRes.Length; i++)
 		{
 			GD.Print("Succesfully added enemby on index: " + i);
-			//var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
-			enemyUnits.Insert(i, enemyRes[i].UnitPrefab);
+			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
+			enemyUnits.Insert(i, eUnit);
 		}
 	}
 	
-	public List<PackedScene> GetPartyPrefabs()
+	public List<PartyUnit> GetPartyList()
 	{
 		return partyUnits;
 	}
 	
-	public List<PackedScene> GetEnemyPrefabs()
+	public List<EnemyUnit> GetEnemyList()
 	{
 		return enemyUnits;
 	}
@@ -95,18 +95,18 @@ public partial class UnitManager : Node
 		AddToEnemyTeam();
 	}
 	
-	//public int GetRemainingPartyUnits()
-	//{
-		//var count = 0;
-		//
-		//for(int i = 0; i < GetPartyList().Count; i++)
-		//{
-			//if(GetPartyList()[i].IsAlive)
-			//{
-				//count++;
-			//}
-		//}
-		//
-		//return count;
-	//}
+	public int GetRemainingPartyUnits()
+	{
+		var count = 0;
+		
+		for(int i = 0; i < GetPartyList().Count; i++)
+		{
+			if(GetPartyList()[i].IsAlive)
+			{
+				count++;
+			}
+		}
+		
+		return count;
+	}
 }
