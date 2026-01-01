@@ -36,7 +36,7 @@ public partial class UnitManager : Node
 	
 	public void AddToPartyTeam()
 	{
-		for(int i = 0; i < partyRes.Length; i++)
+		for (int i = 0; i < partyRes.Length; i++)
 		{
 			var pUnit = partyRes[i].UnitPrefab.Instantiate() as PartyUnit;
 			partyUnits.Insert(i, pUnit);
@@ -47,11 +47,11 @@ public partial class UnitManager : Node
 	
 	public void AddToEnemyTeam()
 	{
-		if(enemyRes == null)
+		if (enemyRes == null)
 		{
 			return;
 		}
-		for(int i = 0; i < enemyRes.Length; i++)
+		for (int i = 0; i < enemyRes.Length; i++)
 		{
 			GD.Print("Succesfully added enemy on index: " + i);
 			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
