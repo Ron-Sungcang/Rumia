@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="Rumia"
-run/main_scene="uid://bx74jmtfaegl6"
+run/main_scene="uid://mh327w1vrkki"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://Src/Manager/GameManager.cs"
+StageManager="*res://Src/Manager/Nodes/StageManager.tscn"
+UnitManager="*res://Src/Manager/Nodes/UnitManager.tscn"
+CursorManager="*res://Src/Manager/CursorManager.cs"
 
 [display]
 
