@@ -25,6 +25,11 @@ public partial class CombatManager : Node
 	private bool isWaiting = false;
 	private bool actionCompleted = false;
 	
+	[Signal]
+	public delegate void StartDrawEventHandler();
+	[Signal]
+	public delegate void StartCombatSignalEventHandler();
+	
 	private enum CombatState
 	{
 		StartTurn,
@@ -74,6 +79,7 @@ public partial class CombatManager : Node
 				case CombatState.PlayerTurn:
 					endTurnButton.Disabled = false;
 					endTurnButton.Visible = true;
+					EmitSignal(SignalName.StartDraw);
 					
 					if (actionCompleted)
 					{
@@ -146,6 +152,8 @@ public partial class CombatManager : Node
 		//Setting the nodes to its positions in the scene
 		SetPartyPositions();
 		SetEnemyPositions();
+		
+		EmitSignal(SignalName.StartCombatSignal);
 		
 		StartTransition(CombatState.StartTurn);
 	}
