@@ -25,6 +25,7 @@ offset_left = 25.0
 offset_top = 6.0
 offset_right = 1107.0
 offset_bottom = 605.0
+mouse_filter = 1
 
 [node name="SampleButton" type="Button" parent="CombatControl"]
 layout_mode = 0

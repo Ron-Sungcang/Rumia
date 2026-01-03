@@ -9,4 +9,5 @@ currHP = 4
 IsAlive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_j5rs1")
