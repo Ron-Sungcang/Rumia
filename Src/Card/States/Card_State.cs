@@ -4,6 +4,8 @@ using System;
 [GlobalClass]
 public partial class Card_State : Node
 {
+	private bool positionInitialized = false;
+
 	public enum State {
 		Idle,
 		Hovering,
@@ -17,29 +19,48 @@ public partial class Card_State : Node
 	
 	public Card cardUI {get; set;}
 	
+	public override void _Process(double delta)
+{
+	if (cardUI != null)
+		GD.Print("Card Position:", cardUI.Position);
+}
+	
+	public void SetState(State newState)
+	{
+		Enter(newState);
+		
+	}
+	
 	
 	public void Enter(State newState)
 	{
+
+		if (!positionInitialized&& cardUI != null)
+		{
+			GD.Print("position set to true");
+			cardUI.PivotOffset = cardUI.Size / 2f;
+			positionInitialized = true;
+		}
 		GD.Print("Enter Called");
 		currentstate = newState;
 		switch(newState)
 		{
 			case State.Idle:
-				cardUI.SetScale(1f);
+				cardUI.Scale = Vector2.One;
 				break;
 			case State.Hovering:
-				cardUI.SetScale(1.2f);
+				cardUI.Scale = new Vector2(1.2f, 1.2f);;
 				break;
 			case State.Clicked:
-				cardUI.SetScale(1.5f);
+				cardUI.Scale = new Vector2(1.2f, 1.2f);
 				//Show Enemies/Allies that can be targeted here
 				break;
 			case State.Exited:
-				cardUI.SetScale(1f);
+				cardUI.Scale = Vector2.One;
 				break;
 			case State.Used:
 				cardUI.UseCards();
-				cardUI.SetScale(1f);
+				cardUI.Scale = Vector2.One;
 				break;
 		}
 	}

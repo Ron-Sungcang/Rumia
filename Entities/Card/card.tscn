@@ -6,21 +6,19 @@
 [ext_resource type="Script" uid="uid://hyr05u6tpobo" path="res://Src/Card/States/Card_State.cs" id="4_b2a2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhfuh"]
-size = Vector2(100.75, 149.5)
+size = Vector2(98.375, 150)
 
 [node name="Card_UI" type="Control"]
 z_index = 1
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -75.0
-offset_right = 50.0
-offset_bottom = 75.0
+anchor_left = 0.45400003
+anchor_top = 0.625
+anchor_right = 0.45400003
+anchor_bottom = 0.625
+offset_left = -0.32003784
+offset_top = -150.0
+offset_right = 99.67996
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_dlk08")
@@ -54,7 +52,7 @@ vertical_alignment = 1
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Selector"]
-position = Vector2(47.625, 74.25)
+position = Vector2(47.1875, 75)
 shape = SubResource("RectangleShape2D_yhfuh")
 
 [node name="CardStateMachine" type="Node" parent="."]
