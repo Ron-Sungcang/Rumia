@@ -6,7 +6,10 @@ using System;
 * There should be more classes that inherits this class
 */
 public partial class Units : Node2D, IUnit
-{
+{	
+	public string UnitName{get; set;}
+	public int MaxHP{get; set;}
+	
 	[Export] private int currHP;
 	[Export] public bool IsAlive{get;set;} = false;
 	[Export] public int PositionSlot{get; set;}

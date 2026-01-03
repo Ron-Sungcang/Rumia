@@ -9,6 +9,9 @@ using System.Collections.Generic;
 public partial class UnitManager : Node
 {
 	public static UnitManager Instance { get; private set; }
+	
+	public static PartyUnit SelectedPartyUnit{get; set; } = null;
+	public static EnemyUnit SelectedEnemyUnit{get; set; } = null;
 	// For now these are just Units
 	[Export] private PartyRes[] partyRes;
 	[Export] private EnemyRes[] enemyRes;
@@ -39,6 +42,8 @@ public partial class UnitManager : Node
 		for (int i = 0; i < partyRes.Length; i++)
 		{
 			var pUnit = partyRes[i].UnitPrefab.Instantiate() as PartyUnit;
+			
+			pUnit.Initialize(partyRes[i]);
 			partyUnits.Insert(i, pUnit);
 			
 			GD.Print("Added to party: "+ (i + 1));
@@ -55,6 +60,8 @@ public partial class UnitManager : Node
 		{
 			GD.Print("Succesfully added enemy on index: " + i);
 			var eUnit = enemyRes[i].UnitPrefab.Instantiate() as EnemyUnit;
+			
+			eUnit.Initialize(enemyRes[i]);
 			enemyUnits.Insert(i, eUnit);
 		}
 	}

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7u2t"]
 size = Vector2(83, 87)
 
-[node name="SampleUnit" type="Node2D" node_paths=PackedStringArray("area2D")]
+[node name="TestPartyUnit" type="Node2D" node_paths=PackedStringArray("area2D")]
 script = ExtResource("1_3l7it")
 area2D = NodePath("Area2D")
 currHP = 6

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="*res://Src/Manager/GameManager.cs"
 StageManager="*res://Src/Manager/Nodes/StageManager.tscn"
 UnitManager="*res://Src/Manager/Nodes/UnitManager.tscn"
+CursorManager="*res://Src/Manager/CursorManager.cs"
 
 [display]
 

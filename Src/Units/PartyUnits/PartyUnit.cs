@@ -24,23 +24,37 @@ public partial class PartyUnit : Units, IPartyUnit
 	{
 	}
 	
+	public void Initialize(PartyRes partyRes)
+	{
+		UnitName = partyRes.UnitName;
+		MaxHP = partyRes.MaxHP;
+	}
+	
 	private void OnAreaInputEvent(Node viewport, InputEvent @event, long shapeIdx)
 	{
 		if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left && mouse.Pressed)
 		{
-			GD.Print("CLICKED ", Name);
+			UnitManager.SelectedEnemyUnit = null;
+			UnitManager.SelectedPartyUnit = this;
+			
+			GD.Print("CLICKED ", UnitManager.SelectedPartyUnit.UnitName);
+			if(UnitManager.SelectedEnemyUnit != null)
+			{
+				GD.Print("ERROR: Enemy Unit still selected");
+			}
 		}
 	}
 	
+	//Enemy unit will also have Mouse entered and exited, possibly REFRACT unless there are different actions
 	public void OnMouseEntered()
 	{
 		GD.Print("MouseEntered");
-		Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+		CursorManager.Instance.PointerCursor();
 	}
 	
 	public void OnMouseExited()
 	{
 		GD.Print("MouseExited");
-		Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
+		CursorManager.Instance.DefaultCursor();
 	}
 }

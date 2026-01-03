@@ -10,6 +10,7 @@ public partial class CombatManager : Node
 	[Export] public PackedScene testPacked; // Only here for testing, test combat stage
 	private CombatStage testSelectedStage; //Remove later, game manager should track the instance of selected stage
 	
+	[Export] private Control ui;
 	[Export] private Button endTurnButton;
 	
 	[Export] private PartySlot[] playerSlots;
@@ -127,6 +128,7 @@ public partial class CombatManager : Node
 	public void StartCombat()
 	{
 		GameManager.Instance.SetGameState(GameState.Combat); 
+		CursorManager.Instance.CurrentUI = ui;
 		
 		ClearEnemySlots();
 		ClearPlayerSlots();
