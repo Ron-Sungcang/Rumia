@@ -17,20 +17,13 @@ public partial class CombatManager : Node
 	[Export] private EnemySlot[] enemySlots;
 	
 	private CombatState state;
-	private CombatState nextState;
-	
-	// For now transitioning between phases using a timer; Future implementation, transition after actions completed
-	private float transitionTimer = 0f;
-	private float transitionDelay = 1.5f;
-	private bool isWaiting = false;
-	private bool actionCompleted = false;
 	
 	[Signal]
 	public delegate void StartDrawEventHandler();
 	[Signal]
 	public delegate void StartCombatSignalEventHandler();
 	
-	private enum CombatState
+	public enum CombatState
 	{
 		StartTurn,
 		PlayerTurn,
@@ -47,49 +40,29 @@ public partial class CombatManager : Node
 		SetProcess(false);
 		StartCombat();
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	
+	public void SetState(CombatState newState)
 	{
-		// TODO: Once multiple scenes established, add a root if that checks if GameManager.Instance.GetGameState() == GameState.Combat
-		if (isWaiting)
-		{
-			transitionTimer += (float)delta;
-			if (transitionTimer >= transitionDelay)
-			{
-				isWaiting = false;
-				
-				if (state == CombatState.Transition)
-				{
-					state = nextState;
-					GD.Print("On state: " + state);
-				}
-			}
-			return;
-		}
-		
+		GD.Print("From: " + state + "To: " + newState);
+			
+		state = newState;
+		CombatStateEntered(state);
+	}
+
+
+	private async void CombatStateEntered(CombatState newState)
+	{	
 		if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
 		{
-			switch (state)
+			switch (newState)
 			{
 				case CombatState.StartTurn:
-					actionCompleted = false;
 					StartTransition(CombatState.PlayerTurn);
 					break;
 				case CombatState.PlayerTurn:
 					endTurnButton.Disabled = false;
 					endTurnButton.Visible = true;
 					EmitSignal(SignalName.StartDraw);
-					
-					if (actionCompleted)
-					{
-						if(testSelectedStage != null && (!testSelectedStage.CombatStageOver))
-						{
-							GD.Print("Remaining enemies: ", testSelectedStage.RemainingEnemies);
-						}
-						StartTransition(CombatState.EndTurn);
-						endTurnButton.Visible = false;
-					}
 					break;
 				case CombatState.EndTurn:
 					StartTransition(CombatState.EnemyTurn);
@@ -99,6 +72,7 @@ public partial class CombatManager : Node
 					{
 						GD.Print("Remaining units: ", testSelectedStage.RemainingUnits);
 					}
+					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 					StartTransition(CombatState.StartTurn);
 					break;
 			}
@@ -229,10 +203,7 @@ public partial class CombatManager : Node
 	{
 		GD.Print("Transitioning to: " + next);
 		
-		isWaiting = true;
-		transitionTimer = 0f;
-		nextState = next;
-		state = CombatState.Transition;
+		SetState(next);
 	}
 	
 	public void ClearEnemySlots()
@@ -254,6 +225,6 @@ public partial class CombatManager : Node
 	public void EndTurnPressed()
 	{
 		endTurnButton.Disabled = true;
-		actionCompleted = true;
+		SetState(CombatState.EndTurn);
 	}
 }

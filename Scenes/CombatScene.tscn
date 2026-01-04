@@ -1,18 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://mh327w1vrkki"]
+[gd_scene load_steps=7 format=3 uid="uid://mh327w1vrkki"]
 
 [ext_resource type="Texture2D" uid="uid://crto01nnmtftd" path="res://Assets/Images/Screenshot 2025-11-06 192018.png" id="1_2mqg5"]
 [ext_resource type="Script" uid="uid://bsvquug6vsnse" path="res://Src/Manager/Combat/CombatManager.cs" id="1_dqj0d"]
 [ext_resource type="PackedScene" uid="uid://b3ywdyij660u5" path="res://Entities/Stages/Scene/TestCombatStage.tscn" id="2_memue"]
 [ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
 [ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
+[ext_resource type="PackedScene" uid="uid://bve3mqy26wipp" path="res://UI/Combat_Ui/player_hand.tscn" id="6_6puio"]
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("ui", "endTurnButton", "playerSlots", "enemySlots")]
 script = ExtResource("1_dqj0d")
 testPacked = ExtResource("2_memue")
 ui = NodePath("CombatControl")
 endTurnButton = NodePath("CombatControl/SampleButton")
-playerSlots = [NodePath("PartyPositions/1PartySlot"), NodePath("PartyPositions/2PartySlot"), NodePath("PartyPositions/3PartySlot"), NodePath("PartyPositions/4PartySlot")]
-enemySlots = [NodePath("EnemyPositions/1EnemySlot"), NodePath("EnemyPositions/2EnemySlot"), NodePath("EnemyPositions/3EnemySlot"), NodePath("EnemyPositions/4EnemySlot"), NodePath("EnemyPositions/5EnemySlot"), NodePath("EnemyPositions/6EnemySlot")]
+playerSlots = []
+enemySlots = []
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(498.00006, 309.00003)
@@ -37,6 +38,8 @@ offset_bottom = 134.0
 focus_mode = 0
 action_mode = 0
 text = "End Turn"
+
+[node name="PlayerHand" parent="CombatControl" instance=ExtResource("6_6puio")]
 
 [node name="PartyPositions" type="Node2D" parent="."]
 position = Vector2(203, 358)

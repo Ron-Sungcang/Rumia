@@ -12,7 +12,7 @@ public partial class Hand : Node
 	{
 		GD.Print("Starting hand");
 		_cardContainer = GetNode<HBoxContainer>("hand");
-		var combatManager = GetNode<CombatManager>("../..");
+		var combatManager = GetNode<CombatManager>("../../");
 		
 		combatManager.Connect(CombatManager.SignalName.StartDraw,new Callable(this, nameof(OnStartDraw)));
 		combatManager.Connect(CombatManager.SignalName.StartCombatSignal,new Callable(this, nameof(OnStartCombat)));
@@ -20,7 +20,7 @@ public partial class Hand : Node
 	
 	private void OnStartCombat(){
 		GD.Print("Combat Start Draw");
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < 4; i++){
 			var card = _cardScene.Instantiate<Card>();
 			_cardContainer.AddChild(card);
 		}
@@ -28,8 +28,10 @@ public partial class Hand : Node
 	}
 	
 	private void OnStartDraw(){
-		if(cards_hand < 6){
+		GD.Print("Draw Called");
+		if(cards_hand <= 6){
 			var card = _cardScene.Instantiate<Card>();
+			GD.Print("Card instantiated: ", card);
 			_cardContainer.AddChild(card);
 			cards_hand++;
 		}

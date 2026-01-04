@@ -33,13 +33,11 @@ public partial class Card_State_Machine : Node
 
 	private void OnCardClicked(Card card)
 	{
-		GD.Print("OnCard clicked called");
 		ChangeState(Card_State.State.Clicked);
 	}
 	
 	private void OnCardHovered(Card card)
 	{
-		GD.Print("OnCard hovered called");
 		ChangeState(Card_State.State.Hovering);
 	}
 	
@@ -54,10 +52,6 @@ public partial class Card_State_Machine : Node
 	}
 
 	public void ChangeState(Card_State.State state){
-		foreach (var kvp in states)
-		{
-			GD.Print($"Key: {kvp.Key}, Value: {kvp.Value}");
-		}
 		
 		if(current_state != null && current_state.currentstate == Card_State.State.Clicked &&
 		 (state == Card_State.State.Hovering || state == Card_State.State.Exited)){

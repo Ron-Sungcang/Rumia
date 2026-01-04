@@ -19,12 +19,6 @@ public partial class Card_State : Node
 	
 	public Card cardUI {get; set;}
 	
-	public override void _Process(double delta)
-{
-	if (cardUI != null)
-		GD.Print("Card Position:", cardUI.Position);
-}
-	
 	public void SetState(State newState)
 	{
 		Enter(newState);
@@ -37,11 +31,9 @@ public partial class Card_State : Node
 
 		if (!positionInitialized&& cardUI != null)
 		{
-			GD.Print("position set to true");
 			cardUI.PivotOffset = cardUI.Size / 2f;
 			positionInitialized = true;
 		}
-		GD.Print("Enter Called");
 		currentstate = newState;
 		switch(newState)
 		{
