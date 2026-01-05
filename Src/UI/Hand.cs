@@ -1,11 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
 
 public partial class Hand : Node
 {
 	[Export]
 	private CardRes[] startingDeck;
-	private CardRes cardRes;
+	private List<CardRes> drawPile;
+	private CardRes cardRes, drawnCard;
 	private PackedScene _cardScene = (PackedScene)GD.Load("res://Entities/Card/card.tscn");
 	private HBoxContainer _cardContainer;
 	private int cards_hand, index;
@@ -16,6 +19,7 @@ public partial class Hand : Node
 		GD.Print("Starting hand");
 		_cardContainer = GetNode<HBoxContainer>("hand");
 		var combatManager = GetNode<CombatManager>("../../");
+		drawPile = new List<CardRes>(startingDeck);
 		
 		combatManager.Connect(CombatManager.SignalName.StartDraw,new Callable(this, nameof(OnStartDraw)));
 		combatManager.Connect(CombatManager.SignalName.StartCombatSignal,new Callable(this, nameof(OnStartCombat)));
@@ -52,13 +56,15 @@ public partial class Hand : Node
 	
 	private CardRes DrawCardFromDeck()
 	{
-		if (startingDeck.Length == 0)
+		if (drawPile.Count == 0)
 		{
 			GD.Print("Have to reshuffle the deck");
-			return null;
+			drawPile = new List<CardRes>(startingDeck);
 		}
-		index = (int)(GD.Randi() % (uint)startingDeck.Length);
-		GD.Print("length: " + startingDeck.Length + "index: " + index);
-		return startingDeck[index];
+		index = (int)(GD.Randi() % (uint)drawPile.Count);
+		GD.Print("length: " + drawPile.Count + "index: " + index);
+		drawnCard = drawPile[index];
+		drawPile.RemoveAt(index);
+		return drawnCard;
 	}
 }
