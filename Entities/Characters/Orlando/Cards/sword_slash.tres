@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardRes" load_steps=2 format=3 uid="uid://d10aaw3o43h1d"]
+
+[ext_resource type="Script" uid="uid://bxu5ajs3p3dyu" path="res://Src/Card/Resources/CardRes.cs" id="1_fk77t"]
+
+[resource]
+script = ExtResource("1_fk77t")
+Id = "orlando_slash_atk"
+Name = "Slash Attack"
+Description = "Deal 5 Damage to a single enemy."
+Damage = 5
+Stamina = 1
+target = 1

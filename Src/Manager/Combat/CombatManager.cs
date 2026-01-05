@@ -174,6 +174,7 @@ public partial class CombatManager : Node
 	
 	private void SetEnemyPositions()
 	{
+		GD.Print("SetEnemy called");
 		var enemyList = UnitManager.Instance.GetEnemyList();
 		if(enemyList == null)
 		{

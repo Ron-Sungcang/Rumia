@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardRes" load_steps=2 format=3 uid="uid://dfdnrb8rdq64d"]
+
+[ext_resource type="Script" uid="uid://bxu5ajs3p3dyu" path="res://Src/Card/Resources/CardRes.cs" id="1_5eydc"]
+
+[resource]
+script = ExtResource("1_5eydc")
+Id = "orlando_block"
+Name = "Block"
+Description = "Gain 5 block."
+Damage = 5
+Stamina = 1
+metadata/_custom_type_script = "uid://bxu5ajs3p3dyu"

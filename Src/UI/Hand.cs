@@ -24,18 +24,18 @@ public partial class Hand : Node
 			var card = _cardScene.Instantiate<Card>();
 			_cardContainer.AddChild(card);
 		}
-		cards_hand = 5;
+		cards_hand = 4;
 	}
 	
 	private void OnStartDraw(){
 		GD.Print("Draw Called");
-		if(cards_hand <= 6){
+		if(cards_hand < 6){
 			var card = _cardScene.Instantiate<Card>();
 			GD.Print("Card instantiated: ", card);
 			_cardContainer.AddChild(card);
 			cards_hand++;
 		}
 	}
-
+	
 	
 }
