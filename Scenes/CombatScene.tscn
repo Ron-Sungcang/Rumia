@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://mh327w1vrkki"]
+[gd_scene load_steps=10 format=3 uid="uid://mh327w1vrkki"]
 
 [ext_resource type="Texture2D" uid="uid://crto01nnmtftd" path="res://Assets/Images/Screenshot 2025-11-06 192018.png" id="1_2mqg5"]
 [ext_resource type="Script" uid="uid://bsvquug6vsnse" path="res://Src/Manager/Combat/CombatManager.cs" id="1_dqj0d"]
 [ext_resource type="PackedScene" uid="uid://b3ywdyij660u5" path="res://Entities/Stages/Scene/TestCombatStage.tscn" id="2_memue"]
 [ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
+[ext_resource type="Resource" uid="uid://dfdnrb8rdq64d" path="res://Entities/Characters/Orlando/Cards/sword_block.tres" id="5_pbl8q"]
 [ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
 [ext_resource type="PackedScene" uid="uid://bve3mqy26wipp" path="res://UI/Combat_Ui/player_hand.tscn" id="6_6puio"]
+[ext_resource type="Resource" uid="uid://d10aaw3o43h1d" path="res://Entities/Characters/Orlando/Cards/sword_slash.tres" id="6_jh4nm"]
 [ext_resource type="PackedScene" uid="uid://ddar3meksa2as" path="res://Entities/Enemies/Scenes/SampleEnemy.tscn" id="7_6puio"]
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("ui", "endTurnButton", "playerSlots", "enemySlots")]
@@ -41,6 +43,7 @@ action_mode = 0
 text = "End Turn"
 
 [node name="PlayerHand" parent="CombatControl" instance=ExtResource("6_6puio")]
+startingDeck = Array[Object]([ExtResource("5_pbl8q"), ExtResource("5_pbl8q"), ExtResource("5_pbl8q"), ExtResource("5_pbl8q"), ExtResource("5_pbl8q"), ExtResource("6_jh4nm"), ExtResource("6_jh4nm"), ExtResource("6_jh4nm"), ExtResource("6_jh4nm"), ExtResource("6_jh4nm")])
 
 [node name="PartyPositions" type="Node2D" parent="."]
 position = Vector2(203, 358)
@@ -79,6 +82,7 @@ script = ExtResource("6_2p17o")
 SlotNumber = 2
 
 [node name="TestEnemy" parent="EnemyPositions/2EnemySlot" instance=ExtResource("7_6puio")]
+currHP = 5
 
 [node name="3EnemySlot" type="Node2D" parent="EnemyPositions"]
 position = Vector2(0, 61)
