@@ -7,9 +7,10 @@ public partial class Card_State_Machine : Node
 	public Card_State initial_state;
 	private Card_State current_state;
 	private Dictionary<Card_State.State, Card_State> states = new(); 
+	private Events events;
 	
 	public void Init(Card cardUI)
-	{		
+	{
 		foreach (Node child in GetChildren())
 		{
 			if(child is Card_State){
@@ -18,6 +19,7 @@ public partial class Card_State_Machine : Node
 				state.cardUI = cardUI;
 			}
 		}
+		events = GetNode<Events>("/root/Events");
 		//connect to signals
 		cardUI.Connect(Card.SignalName.CardClicked, Callable.From<Card>(OnCardClicked));
 		cardUI.Connect(Card.SignalName.CardHovered, Callable.From<Card>(OnCardHovered));
@@ -33,6 +35,7 @@ public partial class Card_State_Machine : Node
 
 	private void OnCardClicked(Card card)
 	{
+		events.EmitSignal(Events.SignalName.CardAimStarted, card);
 		ChangeState(Card_State.State.Clicked);
 	}
 	

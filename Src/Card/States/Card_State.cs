@@ -45,7 +45,6 @@ public partial class Card_State : Node
 				break;
 			case State.Clicked:
 				cardUI.Scale = new Vector2(1.2f, 1.2f);
-				//Show Enemies/Allies that can be targeted here
 				break;
 			case State.Exited:
 				cardUI.Scale = Vector2.One;

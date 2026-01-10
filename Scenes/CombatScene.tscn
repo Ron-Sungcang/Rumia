@@ -3,25 +3,27 @@
 [ext_resource type="Texture2D" uid="uid://crto01nnmtftd" path="res://Assets/Images/Screenshot 2025-11-06 192018.png" id="1_2mqg5"]
 [ext_resource type="Script" uid="uid://bsvquug6vsnse" path="res://Src/Manager/Combat/CombatManager.cs" id="1_dqj0d"]
 [ext_resource type="PackedScene" uid="uid://b3ywdyij660u5" path="res://Entities/Stages/Scene/TestCombatStage.tscn" id="2_memue"]
+[ext_resource type="PackedScene" uid="uid://o4oxja6go7h3" path="res://UI/Combat_Ui/card_target_selector.tscn" id="4_pbl8q"]
 [ext_resource type="Script" uid="uid://3xsk4hv66r32" path="res://Src/Stage/CombatSlots/PartySlot.cs" id="5_memue"]
 [ext_resource type="Resource" uid="uid://dfdnrb8rdq64d" path="res://Entities/Characters/Orlando/Cards/sword_block.tres" id="5_pbl8q"]
 [ext_resource type="Script" uid="uid://dw612vya3r7mp" path="res://Src/Stage/CombatSlots/EnemySlot.cs" id="6_2p17o"]
 [ext_resource type="PackedScene" uid="uid://bve3mqy26wipp" path="res://UI/Combat_Ui/player_hand.tscn" id="6_6puio"]
 [ext_resource type="Resource" uid="uid://d10aaw3o43h1d" path="res://Entities/Characters/Orlando/Cards/sword_slash.tres" id="6_jh4nm"]
-[ext_resource type="PackedScene" uid="uid://ddar3meksa2as" path="res://Entities/Enemies/Scenes/SampleEnemy.tscn" id="7_6puio"]
 
 [node name="CombatScene" type="Node2D" node_paths=PackedStringArray("ui", "endTurnButton", "playerSlots", "enemySlots")]
 script = ExtResource("1_dqj0d")
 testPacked = ExtResource("2_memue")
 ui = NodePath("CombatControl")
 endTurnButton = NodePath("CombatControl/SampleButton")
-playerSlots = []
-enemySlots = []
+playerSlots = [NodePath("PartyPositions/1PartySlot"), NodePath("PartyPositions/2PartySlot"), NodePath("PartyPositions/3PartySlot"), NodePath("PartyPositions/4PartySlot")]
+enemySlots = [NodePath("EnemyPositions/1EnemySlot"), NodePath("EnemyPositions/2EnemySlot"), NodePath("EnemyPositions/3EnemySlot"), NodePath("EnemyPositions/4EnemySlot"), NodePath("EnemyPositions/5EnemySlot"), NodePath("EnemyPositions/6EnemySlot")]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(498.00006, 309.00003)
 scale = Vector2(0.6748691, 0.6493456)
 texture = ExtResource("1_2mqg5")
+
+[node name="CardTargetSelector" parent="." instance=ExtResource("4_pbl8q")]
 
 [node name="CombatControl" type="Control" parent="."]
 layout_mode = 3
@@ -80,9 +82,6 @@ SlotNumber = 1
 position = Vector2(-127, -78)
 script = ExtResource("6_2p17o")
 SlotNumber = 2
-
-[node name="TestEnemy" parent="EnemyPositions/2EnemySlot" instance=ExtResource("7_6puio")]
-currHP = 5
 
 [node name="3EnemySlot" type="Node2D" parent="EnemyPositions"]
 position = Vector2(0, 61)

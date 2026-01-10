@@ -9,7 +9,7 @@ size = Vector2(80, 81)
 [node name="TestEnemy" type="Node2D" node_paths=PackedStringArray("area2D")]
 script = ExtResource("1_mxutr")
 area2D = NodePath("Area2D")
-currHP = 4
+currHP = 5
 IsAlive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
