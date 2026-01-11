@@ -35,7 +35,7 @@ public partial class Card_State_Machine : Node
 
 	private void OnCardClicked(Card card)
 	{
-		events.EmitSignal(Events.SignalName.CardAimStarted, card);
+		events.EmitSignal(Events.SignalName.CardAimStarted, card.cardData);
 		ChangeState(Card_State.State.Clicked);
 	}
 	

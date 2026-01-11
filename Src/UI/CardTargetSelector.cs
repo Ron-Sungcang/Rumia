@@ -13,13 +13,13 @@ public partial class CardTargetSelector : Node2D
 		if(area_2d == null)
 			area_2d = GetNode<Area2D>("Area2D");
 		if(line_2d == null)
-			line_2d = GetNode<Line2D>("CardArc");
+			line_2d = GetNode<Line2D>("CanvasLayer/CardArc");
 		
 		events = GetNode<Events>("/root/Events");
-		events.Connect(Events.SignalName.CardAimStarted, Callable.From<Card>(OnCardAimStarted));
+		events.Connect(Events.SignalName.CardAimStarted, Callable.From<CardRes>(OnCardAimStarted));
 	}
 
-	public void OnCardAimStarted(Card card)
+	public void OnCardAimStarted(CardRes card)
 	{
 		GD.Print("Card Aim started with card:" + card.Name);
 	}

@@ -3,7 +3,7 @@ using System;
 
 public partial class Card : Control
 {
-	private CardRes cardData;
+	public CardRes cardData;
 
 	[Export] public ColorRect ColorRectNode { get; set; }
 	[Export] public Label StateLabel { get; set; }
