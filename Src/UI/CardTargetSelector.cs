@@ -19,15 +19,15 @@ public partial class CardTargetSelector : Node2D
 			line_2d = GetNode<Line2D>("CanvasLayer/CardArc");
 		
 		events = GetNode<Events>("/root/Events");
-		events.Connect(Events.SignalName.CardAimStarted, Callable.From<CardRes>(OnCardAimStarted));
+		events.Connect(Events.SignalName.CardAimStarted, Callable.From<Card>(OnCardAimStarted));
 	}
 
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		if(!targeting)
 			return;
-		area_2d.position = GetLocalMousePosition();
-		line_2d.points = GetPoints();
+		area_2d.Position = GetLocalMousePosition();
+		line_2d.Points = GetPoints();
 	}
 
 	public Vector2[] GetPoints()
@@ -57,10 +57,10 @@ public partial class CardTargetSelector : Node2D
 
 	private float EaseOutCubic(float t)
 	{
-		return 1f - Mathf.pow(1f - t, 3);
+		return 1f - Mathf.Pow(1f - t, 3);
 	}
 
-	public void OnCardAimStarted(CardRes card)
+	public void OnCardAimStarted(Card card)
 	{
 		GD.Print("Card Aim started with card:" + card.cardData.Name);
 	}
